@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "a8/6fQ2yVMC2NNU8+g4yBQoTPGj2dL5DBxn3tL4Z2Lk=",
+  "Hash": "odmVw0Ezn2XiEbTMnCCEyvlFdHb2vJVZ/aiEONeOtQ4=",
   "Source": "MyFinanceHub",
   "BasePath": "/",
   "Mode": "Root",
@@ -31,8 +31,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "hc0nl5w7zk",
-      "Integrity": "f3XnmPCaDfKCZA9x6OZQAH2j2iI9a11LVc4X1n4mC7g=",
+      "Fingerprint": "kux6bh3qyp",
+      "Integrity": "3G9pX3tBfwIJT32o+pnPkJoHR3ej0qIpxThKr27sd/A=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Ayush\\source\\repos\\MyFinanceHub\\obj\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\MyFinanceHub.styles.css"
@@ -52,8 +52,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "hc0nl5w7zk",
-      "Integrity": "f3XnmPCaDfKCZA9x6OZQAH2j2iI9a11LVc4X1n4mC7g=",
+      "Fingerprint": "kux6bh3qyp",
+      "Integrity": "3G9pX3tBfwIJT32o+pnPkJoHR3ej0qIpxThKr27sd/A=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Ayush\\source\\repos\\MyFinanceHub\\obj\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\scopedcss\\projectbundle\\MyFinanceHub.bundle.scp.css"
@@ -586,7 +586,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6557"
+          "Value": "16923"
         },
         {
           "Name": "Content-Type",
@@ -594,11 +594,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"f3XnmPCaDfKCZA9x6OZQAH2j2iI9a11LVc4X1n4mC7g=\""
+          "Value": "\"3G9pX3tBfwIJT32o+pnPkJoHR3ej0qIpxThKr27sd/A=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 04 Jan 2025 16:25:47 GMT"
+          "Value": "Sat, 04 Jan 2025 17:05:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -608,12 +608,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-f3XnmPCaDfKCZA9x6OZQAH2j2iI9a11LVc4X1n4mC7g="
+          "Value": "sha256-3G9pX3tBfwIJT32o+pnPkJoHR3ej0qIpxThKr27sd/A="
         }
       ]
     },
     {
-      "Route": "MyFinanceHub.hc0nl5w7zk.bundle.scp.css",
+      "Route": "MyFinanceHub.kux6bh3qyp.bundle.scp.css",
       "AssetFile": "C:\\Users\\Ayush\\source\\repos\\MyFinanceHub\\obj\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\scopedcss\\projectbundle\\MyFinanceHub.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -623,7 +623,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6557"
+          "Value": "16923"
         },
         {
           "Name": "Content-Type",
@@ -631,11 +631,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"f3XnmPCaDfKCZA9x6OZQAH2j2iI9a11LVc4X1n4mC7g=\""
+          "Value": "\"3G9pX3tBfwIJT32o+pnPkJoHR3ej0qIpxThKr27sd/A=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 04 Jan 2025 16:25:47 GMT"
+          "Value": "Sat, 04 Jan 2025 17:05:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -645,7 +645,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "hc0nl5w7zk"
+          "Value": "kux6bh3qyp"
         },
         {
           "Name": "label",
@@ -653,12 +653,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-f3XnmPCaDfKCZA9x6OZQAH2j2iI9a11LVc4X1n4mC7g="
+          "Value": "sha256-3G9pX3tBfwIJT32o+pnPkJoHR3ej0qIpxThKr27sd/A="
         }
       ]
     },
     {
-      "Route": "MyFinanceHub.hc0nl5w7zk.styles.css",
+      "Route": "MyFinanceHub.kux6bh3qyp.styles.css",
       "AssetFile": "C:\\Users\\Ayush\\source\\repos\\MyFinanceHub\\obj\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\MyFinanceHub.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -668,7 +668,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6557"
+          "Value": "16923"
         },
         {
           "Name": "Content-Type",
@@ -676,11 +676,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"f3XnmPCaDfKCZA9x6OZQAH2j2iI9a11LVc4X1n4mC7g=\""
+          "Value": "\"3G9pX3tBfwIJT32o+pnPkJoHR3ej0qIpxThKr27sd/A=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 04 Jan 2025 16:25:47 GMT"
+          "Value": "Sat, 04 Jan 2025 17:05:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -690,7 +690,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "hc0nl5w7zk"
+          "Value": "kux6bh3qyp"
         },
         {
           "Name": "label",
@@ -698,7 +698,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-f3XnmPCaDfKCZA9x6OZQAH2j2iI9a11LVc4X1n4mC7g="
+          "Value": "sha256-3G9pX3tBfwIJT32o+pnPkJoHR3ej0qIpxThKr27sd/A="
         }
       ]
     },
@@ -713,7 +713,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6557"
+          "Value": "16923"
         },
         {
           "Name": "Content-Type",
@@ -721,11 +721,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"f3XnmPCaDfKCZA9x6OZQAH2j2iI9a11LVc4X1n4mC7g=\""
+          "Value": "\"3G9pX3tBfwIJT32o+pnPkJoHR3ej0qIpxThKr27sd/A=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 04 Jan 2025 16:25:47 GMT"
+          "Value": "Sat, 04 Jan 2025 17:05:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -735,7 +735,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-f3XnmPCaDfKCZA9x6OZQAH2j2iI9a11LVc4X1n4mC7g="
+          "Value": "sha256-3G9pX3tBfwIJT32o+pnPkJoHR3ej0qIpxThKr27sd/A="
         }
       ]
     }

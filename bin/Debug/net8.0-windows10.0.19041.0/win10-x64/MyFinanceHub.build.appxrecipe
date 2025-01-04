@@ -515,7 +515,7 @@
       <PackagePath>wwwroot\MyFinanceHub.styles.css</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\scopedcss\projectbundle\MyFinanceHub.bundle.scp.css">
-      <PackagePath>wwwroot\MyFinanceHub.hc0nl5w7zk.bundle.scp.css</PackagePath>
+      <PackagePath>wwwroot\MyFinanceHub.kux6bh3qyp.bundle.scp.css</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\Components\Layout\MainLayout.razor.css">
       <PackagePath>Components\Layout\MainLayout.razor.css</PackagePath>
@@ -526,8 +526,23 @@
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\Components\Pages\Dashboard.razor.css">
       <PackagePath>Components\Pages\Dashboard.razor.css</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\Components\Pages\DebtPge.razor.css">
+      <PackagePath>Components\Pages\DebtPge.razor.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\Components\Pages\InFlow.razor.css">
+      <PackagePath>Components\Pages\InFlow.razor.css</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\Components\Pages\Login.razor.css">
       <PackagePath>Components\Pages\Login.razor.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\Components\Pages\OutFlow.razor.css">
+      <PackagePath>Components\Pages\OutFlow.razor.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\Components\Pages\Register.razor.css">
+      <PackagePath>Components\Pages\Register.razor.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\Components\Pages\TransactionPage.razor.css">
+      <PackagePath>Components\Pages\TransactionPage.razor.css</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

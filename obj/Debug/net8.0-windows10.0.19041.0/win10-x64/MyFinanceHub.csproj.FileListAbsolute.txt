@@ -215,3 +215,8 @@ C:\Users\Ayush\source\repos\MyFinanceHub\obj\Debug\net8.0-windows10.0.19041.0\wi
 C:\Users\Ayush\source\repos\MyFinanceHub\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.AspNetCore.WebUtilities.dll
 C:\Users\Ayush\source\repos\MyFinanceHub\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Net.Http.Headers.dll
 C:\Users\Ayush\source\repos\MyFinanceHub\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\scopedcss\Components\Pages\Dashboard.razor.rz.scp.css
+C:\Users\Ayush\source\repos\MyFinanceHub\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\scopedcss\Components\Pages\InFlow.razor.rz.scp.css
+C:\Users\Ayush\source\repos\MyFinanceHub\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\scopedcss\Components\Pages\OutFlow.razor.rz.scp.css
+C:\Users\Ayush\source\repos\MyFinanceHub\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\scopedcss\Components\Pages\Register.razor.rz.scp.css
+C:\Users\Ayush\source\repos\MyFinanceHub\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\scopedcss\Components\Pages\DebtPge.razor.rz.scp.css
+C:\Users\Ayush\source\repos\MyFinanceHub\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\scopedcss\Components\Pages\TransactionPage.razor.rz.scp.css

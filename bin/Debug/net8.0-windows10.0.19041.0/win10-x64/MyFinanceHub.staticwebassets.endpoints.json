@@ -3,7 +3,7 @@
   "ManifestType": "Build",
   "Endpoints": [
     {
-      "Route": "MyFinanceHub.hc0nl5w7zk.styles.css",
+      "Route": "MyFinanceHub.kux6bh3qyp.styles.css",
       "AssetFile": "MyFinanceHub.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -17,7 +17,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6557"
+          "Value": "16923"
         },
         {
           "Name": "Content-Type",
@@ -25,21 +25,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"f3XnmPCaDfKCZA9x6OZQAH2j2iI9a11LVc4X1n4mC7g=\""
+          "Value": "\"3G9pX3tBfwIJT32o+pnPkJoHR3ej0qIpxThKr27sd/A=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 04 Jan 2025 16:25:47 GMT"
+          "Value": "Sat, 04 Jan 2025 17:05:48 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "hc0nl5w7zk"
+          "Value": "kux6bh3qyp"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-f3XnmPCaDfKCZA9x6OZQAH2j2iI9a11LVc4X1n4mC7g="
+          "Value": "sha256-3G9pX3tBfwIJT32o+pnPkJoHR3ej0qIpxThKr27sd/A="
         },
         {
           "Name": "label",
@@ -62,7 +62,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6557"
+          "Value": "16923"
         },
         {
           "Name": "Content-Type",
@@ -70,17 +70,17 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"f3XnmPCaDfKCZA9x6OZQAH2j2iI9a11LVc4X1n4mC7g=\""
+          "Value": "\"3G9pX3tBfwIJT32o+pnPkJoHR3ej0qIpxThKr27sd/A=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 04 Jan 2025 16:25:47 GMT"
+          "Value": "Sat, 04 Jan 2025 17:05:48 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-f3XnmPCaDfKCZA9x6OZQAH2j2iI9a11LVc4X1n4mC7g="
+          "Value": "sha256-3G9pX3tBfwIJT32o+pnPkJoHR3ej0qIpxThKr27sd/A="
         }
       ]
     },

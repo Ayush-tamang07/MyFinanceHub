@@ -1,7 +1,12 @@
 Components\Layout\MainLayout.razor.css
 Components\Layout\NavMenu.razor.css
 Components\Pages\Dashboard.razor.css
+Components\Pages\DebtPge.razor.css
+Components\Pages\InFlow.razor.css
 Components\Pages\Login.razor.css
+Components\Pages\OutFlow.razor.css
+Components\Pages\Register.razor.css
+Components\Pages\TransactionPage.razor.css
 OpenSans-Regular.ttf
 appicon.ico
 appiconLargeTile.scale-100.png
@@ -60,7 +65,7 @@ splashSplashScreen.scale-150.png
 splashSplashScreen.scale-200.png
 splashSplashScreen.scale-400.png
 wwwroot\MyFinanceHub.styles.css
-wwwroot\MyFinanceHub.hc0nl5w7zk.bundle.scp.css
+wwwroot\MyFinanceHub.kux6bh3qyp.bundle.scp.css
 AboutAssets.txt
 wwwroot\css\app.css
 wwwroot\css\bootstrap\bootstrap.min.css

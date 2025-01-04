@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "2kZZKHl/T5D6itzGF89DG1vRUPQiRxywCG5aySfs7UY=",
+  "Hash": "DMQCH1ISelgdlAi1QC2LGsO5fUUB+Z03gPGlkGMqaas=",
   "Source": "MyFinanceHub",
   "BasePath": "/",
   "Mode": "Root",
@@ -31,8 +31,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "7m66kiuorb",
-      "Integrity": "/2LVAL2euD4VIZm35+90zPt/YtqIRvwwAkn9JIlIJek=",
+      "Fingerprint": "9j2itve04c",
+      "Integrity": "qykrl73NPhLSu7+zCFMq2WL/L243MsevU9d+/+R1zu0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Ayush\\source\\repos\\MyFinanceHub\\obj\\Debug\\net8.0-android\\scopedcss\\bundle\\MyFinanceHub.styles.css"
@@ -52,8 +52,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "7m66kiuorb",
-      "Integrity": "/2LVAL2euD4VIZm35+90zPt/YtqIRvwwAkn9JIlIJek=",
+      "Fingerprint": "9j2itve04c",
+      "Integrity": "qykrl73NPhLSu7+zCFMq2WL/L243MsevU9d+/+R1zu0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Ayush\\source\\repos\\MyFinanceHub\\obj\\Debug\\net8.0-android\\scopedcss\\projectbundle\\MyFinanceHub.bundle.scp.css"
@@ -576,7 +576,7 @@
       ]
     },
     {
-      "Route": "MyFinanceHub.7m66kiuorb.bundle.scp.css",
+      "Route": "MyFinanceHub.9j2itve04c.bundle.scp.css",
       "AssetFile": "C:\\Users\\Ayush\\source\\repos\\MyFinanceHub\\obj\\Debug\\net8.0-android\\scopedcss\\projectbundle\\MyFinanceHub.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -586,7 +586,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5800"
+          "Value": "14344"
         },
         {
           "Name": "Content-Type",
@@ -594,11 +594,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"/2LVAL2euD4VIZm35+90zPt/YtqIRvwwAkn9JIlIJek=\""
+          "Value": "\"qykrl73NPhLSu7+zCFMq2WL/L243MsevU9d+/+R1zu0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 04 Jan 2025 16:18:53 GMT"
+          "Value": "Sat, 04 Jan 2025 17:04:25 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -608,7 +608,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "7m66kiuorb"
+          "Value": "9j2itve04c"
         },
         {
           "Name": "label",
@@ -616,12 +616,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-/2LVAL2euD4VIZm35+90zPt/YtqIRvwwAkn9JIlIJek="
+          "Value": "sha256-qykrl73NPhLSu7+zCFMq2WL/L243MsevU9d+/+R1zu0="
         }
       ]
     },
     {
-      "Route": "MyFinanceHub.7m66kiuorb.styles.css",
+      "Route": "MyFinanceHub.9j2itve04c.styles.css",
       "AssetFile": "C:\\Users\\Ayush\\source\\repos\\MyFinanceHub\\obj\\Debug\\net8.0-android\\scopedcss\\bundle\\MyFinanceHub.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -631,7 +631,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5800"
+          "Value": "14344"
         },
         {
           "Name": "Content-Type",
@@ -639,11 +639,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"/2LVAL2euD4VIZm35+90zPt/YtqIRvwwAkn9JIlIJek=\""
+          "Value": "\"qykrl73NPhLSu7+zCFMq2WL/L243MsevU9d+/+R1zu0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 04 Jan 2025 16:18:53 GMT"
+          "Value": "Sat, 04 Jan 2025 17:04:25 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -653,7 +653,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "7m66kiuorb"
+          "Value": "9j2itve04c"
         },
         {
           "Name": "label",
@@ -661,7 +661,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-/2LVAL2euD4VIZm35+90zPt/YtqIRvwwAkn9JIlIJek="
+          "Value": "sha256-qykrl73NPhLSu7+zCFMq2WL/L243MsevU9d+/+R1zu0="
         }
       ]
     },
@@ -676,7 +676,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5800"
+          "Value": "14344"
         },
         {
           "Name": "Content-Type",
@@ -684,11 +684,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"/2LVAL2euD4VIZm35+90zPt/YtqIRvwwAkn9JIlIJek=\""
+          "Value": "\"qykrl73NPhLSu7+zCFMq2WL/L243MsevU9d+/+R1zu0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 04 Jan 2025 16:18:53 GMT"
+          "Value": "Sat, 04 Jan 2025 17:04:25 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -698,7 +698,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-/2LVAL2euD4VIZm35+90zPt/YtqIRvwwAkn9JIlIJek="
+          "Value": "sha256-qykrl73NPhLSu7+zCFMq2WL/L243MsevU9d+/+R1zu0="
         }
       ]
     },
@@ -713,7 +713,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5800"
+          "Value": "14344"
         },
         {
           "Name": "Content-Type",
@@ -721,11 +721,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"/2LVAL2euD4VIZm35+90zPt/YtqIRvwwAkn9JIlIJek=\""
+          "Value": "\"qykrl73NPhLSu7+zCFMq2WL/L243MsevU9d+/+R1zu0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 04 Jan 2025 16:18:53 GMT"
+          "Value": "Sat, 04 Jan 2025 17:04:25 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -735,7 +735,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-/2LVAL2euD4VIZm35+90zPt/YtqIRvwwAkn9JIlIJek="
+          "Value": "sha256-qykrl73NPhLSu7+zCFMq2WL/L243MsevU9d+/+R1zu0="
         }
       ]
     }
