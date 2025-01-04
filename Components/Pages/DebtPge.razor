@@ -1,0 +1,104 @@
+﻿@page "/debtPge"
+@using MyFinanceHub.Model
+@inject SessionUser Session
+@inject UserService UserService
+@inject NavigationManager NavigationManager
+
+<div>
+    <div class="texts">
+        <div class="text-row">
+            <p>Name</p>
+            <input @bind="name" />
+        </div>
+        <div class="text-row">
+            <p>Amount</p>
+            <input @bind="amount" type="number" />
+        </div>
+        <button @onclick="SubmitDebt">Submit</button>
+    </div>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var debt in Session.UserLogin.Debt)
+            {
+                <tr>
+                    <td>@debt.DebtName</td>
+                    <td>@debt.DebtAmount</td>
+                    <td>@debt.DebtDate.ToShortDateString()</td>
+                    <td>@debt.Status</td>
+                    <td>
+                        <button @onclick="() => NavigateToClearDebt(debt.DebtId)">Clear</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@code
+{
+    private string name = "";
+    private decimal amount = 0;
+
+    private Debt newDebt = new Debt();
+    private Transaction newTrans = new Transaction();
+
+    // protected override void OnInitialized()
+    // {
+    //     var user = Session.UserLogin;
+    // }
+
+    private void SubmitDebt()
+    {
+        var user = Session.UserLogin;
+
+        // Add new transaction to the user's Debt list
+        newDebt.DebtId = user.Debt.Count + 1;
+        newDebt.DebtName = name;
+        newDebt.DebtType = "Credit";
+        newDebt.DebtTag = "Debt";
+        newDebt.DebtAmount = amount;
+        newDebt.DebtDate = DateTime.Now;
+        newDebt.Status = "UnPaid";
+
+        newTrans.TransactionId = user.Transaction.Count + 1;
+        newTrans.TransactionLabel = "Debt";
+        newTrans.TransactionName = name;
+        newTrans.TransactionAmount = amount;
+        newTrans.TransactionType = "Credit";
+        newTrans.TransactionDate = DateTime.Now;
+
+        user.Transaction.Add(newTrans);
+        user.Debt.Add(newDebt);
+
+        // Save the updated user data
+        var users = UserService.LoadUsers();
+        var userIndex = users.FindIndex(u => u.UserID == user.UserID);
+        if (userIndex != -1)
+        {
+            users[userIndex] = user;
+            UserService.SaveUsers(users);
+        }
+
+        // Clear the input fields
+        name = "";
+        amount = 0;
+
+        // Reset the Debt object for the next submission
+        newDebt = new Debt();
+    }
+
+    private void NavigateToClearDebt(int debtId)
+    {
+        NavigationManager.NavigateTo($"/cleardebt?DebtId={debtId}");
+    }
+}

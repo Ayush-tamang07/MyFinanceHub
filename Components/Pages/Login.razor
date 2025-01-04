@@ -1,0 +1,56 @@
+﻿@page "/"
+@using MyFinanceHub.Components.Layout
+@layout FirstLayout
+@inject UserService UserService
+@inject NavigationManager NavigationManager
+@using MyFinanceHub.Model
+@inject SessionUser Session
+
+<h3>Login</h3>
+
+<div>
+    <input @bind="LoginUsername" placeholder="Username" @oninput="ClearMessage" />
+    <input @bind="LoginPassword" placeholder="Password" type="password" @oninput="ClearMessage" />
+    <button @onclick="LoginPage">Login</button>
+    <a href="/register">Register</a>
+</div>
+
+@if (!string.IsNullOrEmpty(Message))
+{
+    <p>@Message</p>
+}
+
+@code {
+    private string LoginUsername = "";
+    private string LoginPassword = "";
+    private string Message = "";
+
+    private List<User> Users = new();
+
+    protected override void OnInitialized()
+    {
+        Users = UserService.LoadUsers();
+    }
+
+    private void LoginPage()
+    {
+        var user = Users.FirstOrDefault(u => u.Username == LoginUsername);
+
+        if (user != null && UserService.ValidatePassword(LoginPassword, user.Password))
+        {
+            Console.WriteLine("i am here : ", user);
+            Session.UserLogin = user;
+            // Redirect to dashboard if login is successful
+            NavigationManager.NavigateTo("/dashboard");
+        }
+        else
+        {
+            Message = "Invalid username or password.";
+        }
+    }
+
+    private void ClearMessage()
+    {
+        Message = ""; // Clear the error message when user starts typing again
+    }
+}

@@ -3,6 +3,51 @@
   "ManifestType": "Publish",
   "Endpoints": [
     {
+      "Route": "MyFinanceHub.7m66kiuorb.styles.css",
+      "AssetFile": "MyFinanceHub.styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5800"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/2LVAL2euD4VIZm35+90zPt/YtqIRvwwAkn9JIlIJek=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 04 Jan 2025 16:18:53 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7m66kiuorb"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/2LVAL2euD4VIZm35+90zPt/YtqIRvwwAkn9JIlIJek="
+        },
+        {
+          "Name": "label",
+          "Value": "MyFinanceHub.styles.css"
+        }
+      ]
+    },
+    {
       "Route": "MyFinanceHub.styles.css",
       "AssetFile": "MyFinanceHub.styles.css",
       "Selectors": [],
@@ -17,7 +62,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5481"
+          "Value": "5800"
         },
         {
           "Name": "Content-Type",
@@ -25,62 +70,17 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"NKVOZx/U3ib3Hw0XDByNZKgaEqTx3yWyX1j5wpwIveI=\""
+          "Value": "\"/2LVAL2euD4VIZm35+90zPt/YtqIRvwwAkn9JIlIJek=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 17 Dec 2024 03:32:08 GMT"
+          "Value": "Sat, 04 Jan 2025 16:18:53 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-NKVOZx/U3ib3Hw0XDByNZKgaEqTx3yWyX1j5wpwIveI="
-        }
-      ]
-    },
-    {
-      "Route": "MyFinanceHub.wbi4tmtsdf.styles.css",
-      "AssetFile": "MyFinanceHub.styles.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "5481"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"NKVOZx/U3ib3Hw0XDByNZKgaEqTx3yWyX1j5wpwIveI=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 17 Dec 2024 03:32:08 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "wbi4tmtsdf"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-NKVOZx/U3ib3Hw0XDByNZKgaEqTx3yWyX1j5wpwIveI="
-        },
-        {
-          "Name": "label",
-          "Value": "MyFinanceHub.styles.css"
+          "Value": "sha256-/2LVAL2euD4VIZm35+90zPt/YtqIRvwwAkn9JIlIJek="
         }
       ]
     },

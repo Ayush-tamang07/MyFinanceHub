@@ -1,0 +1,120 @@
+﻿@page "/inflow"
+@using MyFinanceHub.Model
+@inject SessionUser Session
+@inject UserService UserService
+
+<div>
+    <div class="texts">
+        <div class="text-row">
+            <p>Name</p>
+            <input @bind="name" />
+        </div>
+        <div class="text-row">
+            <p>Tag</p>
+            <input @bind="tag" />
+        </div>
+        <div class="text-row">
+            <p>Amount</p>
+            <input @bind="amount" type="number" />
+        </div>
+        <div class="text-row">
+            <p>Description</p>
+            <input @bind="description" />
+        </div>
+        <button @onclick="SubmitCashIn">Submit</button>
+    </div>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Tag</th>
+                <th>Date</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cashin in Session.UserLogin.Transaction.Where(t => t.TransactionType == "Credit"))
+            {
+                <tr class="@GetRowClass(cashin)">
+                    <td>@cashin.TransactionName</td>
+                    <td>@cashin.TransactionId</td>
+                    <td>@cashin.TransactionType</td>
+                    <td>@cashin.TransactionLabel</td>
+                    <td>@cashin.TransactionDate.ToShortDateString()</td>
+                    <td>@cashin.TransactionAmount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .highlight-row {
+        background-color: #f2dede; /* Light red background */
+        color: #a94442; /* Dark red text */
+    }
+</style>
+
+
+@code
+{
+    private string name = "";
+    private string tag = "";
+    private decimal amount = 0;
+    private string description = "";
+
+    private CashIn newCashIn = new CashIn();
+    private Transaction newTrans = new Transaction();
+
+    private void SubmitCashIn()
+    {
+        var user = Session.UserLogin;
+
+        // Add new transaction to the user's CashIn list
+        newCashIn.CashInId = user.CashIn.Count + 1;
+        newCashIn.CashInName = name;
+        newCashIn.CashInType = "Credit";
+        newCashIn.Label = tag;
+        newCashIn.Amount = amount;
+        newCashIn.CashInDate = DateTime.Now;
+        newCashIn.CashInDescription = description;
+
+        newTrans.TransactionId = user.Transaction.Count + 1;
+        newTrans.TransactionLabel = tag;
+        newTrans.TransactionName = name;
+        newTrans.TransactionAmount = amount;
+        newTrans.TransactionDescription = description;
+        newTrans.TransactionType = "Credit";
+        newTrans.TransactionDate = DateTime.Now;
+
+        user.Transaction.Add(newTrans);
+
+        user.CashIn.Add(newCashIn);
+
+        // Save the updated user data
+        var users = UserService.LoadUsers();
+        var userIndex = users.FindIndex(u => u.UserID == user.UserID);
+        if (userIndex != -1)
+        {
+            users[userIndex] = user;
+            UserService.SaveUsers(users);
+        }
+
+        // Clear the input fields
+        name = "";
+        tag = "";
+        amount = 0;
+        description = "";
+
+        // Reset the CashIn object for the next submission
+        newCashIn = new CashIn();
+    }
+
+    private string GetRowClass(Transaction cashin)
+    {
+        return cashin.TransactionLabel == "Debt" ? "highlight-row" : string.Empty;
+    }
+}

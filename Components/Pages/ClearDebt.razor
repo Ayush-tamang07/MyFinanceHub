@@ -1,0 +1,115 @@
+﻿@page "/cleardebt"
+@using MyFinanceHub.Model
+@inject SessionUser Session
+@inject UserService UserService
+@inject NavigationManager NavigationManager
+
+<h3>Clear Debt</h3>
+<div>
+    <div class="texts">
+        <div class="text-row">
+            <p>Amount</p>
+            <input @bind="amount" type="number" />
+        </div>
+        <button @onclick="SubmitDebt">Submit</button>
+    </div>
+</div>
+
+@code {
+    private int debtId;
+    private decimal amount = 0;
+
+    private decimal totalCredit = 0;
+    private decimal totalDebit = 0;
+    private decimal totalBalance = 0;
+    private DebtClear newClear = new DebtClear();
+    private Transaction newTrans = new Transaction();
+
+    protected override void OnInitialized()
+    {
+        var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
+        var query = Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(uri.Query);
+
+        if (query.TryGetValue("DebtId", out var id))
+        {
+            debtId = int.Parse(id);
+            // Use debtId to fetch or process data
+        }
+
+        var loggedUser = Session.UserLogin;
+
+        if (loggedUser?.Transaction != null)
+        {
+            foreach (var transaction in loggedUser.Transaction)
+            {
+                if (transaction.TransactionType == "Credit")
+                {
+                    totalCredit += transaction.TransactionAmount;
+                }
+                else if (transaction.TransactionType == "Debit")
+                {
+                    totalDebit += transaction.TransactionAmount;
+                }
+            }
+
+            totalBalance = totalCredit - totalDebit;
+        }
+    }
+
+    private void SubmitDebt()
+    {
+        var user = Session.UserLogin;
+        var debt = user.Debt.FirstOrDefault(d => d.DebtId == debtId);
+
+        decimal debts = debt.DebtAmount;
+
+        if (debts <= amount)
+        {
+            return;
+        }
+
+        else if(amount > totalBalance)
+        {
+            return;
+        }
+
+        else
+        {
+
+            // Add new transaction to the user's Debt list
+            newClear.DebtClearId = debt.DebtClear.Count + 1;
+            newClear.DebtClearType = "Debit";
+            newClear.DebtClearAmount = amount;
+            newClear.DebtClearDate = DateTime.Now;
+
+            debt.DebtAmount = debts - amount;
+            debt.Status = "Pending";
+
+        newTrans.TransactionId = user.Transaction.Count + 1;
+        newTrans.TransactionName = "Loan Paid";
+        newTrans.TransactionLabel = "Debt";
+        newTrans.TransactionAmount = amount;
+        newTrans.TransactionType = "Debit";
+        newTrans.TransactionDate = DateTime.Now;
+
+        user.Transaction.Add(newTrans);
+        debt.DebtClear.Add(newClear);
+
+        // Save the updated user data
+        var users = UserService.LoadUsers();
+        var userIndex = users.FindIndex(u => u.UserID == user.UserID);
+        if (userIndex != -1)
+        {
+            users[userIndex] = user;
+            UserService.SaveUsers(users);
+        }
+
+        // Clear the input fields
+        amount = 0;
+
+        // Reset the Debt object for the next submission
+        newClear = new DebtClear();
+        }
+
+    }
+}

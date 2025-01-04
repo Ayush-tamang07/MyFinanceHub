@@ -1,0 +1,58 @@
+﻿@page "/dashboard"
+@inject SessionUser Session
+<h3>Welcome, @Session.UserLogin.Username!</h3>
+<div class="container">
+<div>
+    <p>Total Balance</p>
+    <p>@total</p>
+</div>
+
+<div>
+    <p>Total Inflow</p>
+    <p>@totalCredit</p>
+</div>
+
+<div>
+    <p>Total OutFlow</p>
+    <p>@totalDebit</p>
+</div>
+
+<div>
+    <p>Total Debt</p>
+    <p>@totalDebt</p>
+</div>
+</div>
+@code {
+    private decimal totalCredit = 0;
+    private decimal totalDebit = 0;
+    private decimal totalDebt = 0;
+    private decimal total = 0;
+
+    protected override void OnInitialized()
+    {
+        var loggedUser = Session.UserLogin;
+
+        if (loggedUser?.Transaction != null)
+        {
+            foreach (var transaction in loggedUser.Transaction)
+            {
+                if (transaction.TransactionType == "Credit")
+                {
+                    totalCredit += transaction.TransactionAmount;
+                }
+                else if (transaction.TransactionType == "Debit")
+                {
+                    totalDebit += transaction.TransactionAmount;
+                }
+                
+                
+                if (transaction.TransactionLabel == "Debt")
+                {
+                    totalDebt += transaction.TransactionAmount;
+                }
+            }
+
+            total = totalCredit - totalDebit;
+        }
+    }
+}

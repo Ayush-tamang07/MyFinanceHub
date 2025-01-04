@@ -15,9 +15,11 @@ namespace MyFinanceHub
                 });
 
             builder.Services.AddMauiBlazorWebView();
+            builder.Services.AddSingleton<UserService>();
+            builder.Services.AddScoped<SessionUser>();
 
 #if DEBUG
-    		builder.Services.AddBlazorWebViewDeveloperTools();
+            builder.Services.AddBlazorWebViewDeveloperTools();
     		builder.Logging.AddDebug();
 #endif
 

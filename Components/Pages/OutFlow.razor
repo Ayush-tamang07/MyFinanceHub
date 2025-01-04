@@ -1,0 +1,107 @@
+﻿@page "/outflow"
+@using MyFinanceHub.Model
+@inject SessionUser Session
+@inject UserService UserService
+
+<div>
+    <div class="texts">
+        <div class="text-row">
+            <p>Name</p>
+            <input @bind="name" />
+        </div>
+        <div class="text-row">
+            <p>Tag</p>
+            <input @bind="tag" />
+        </div>
+        <div class="text-row">
+            <p>Amount</p>
+            <input @bind="amount" type="number" />
+        </div>
+        <div class="text-row">
+            <p>Description</p>
+            <input @bind="description" />
+        </div>
+        <button @onclick="SubmitCashOut">Submit</button>
+    </div>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Tag</th>
+                <th>Date</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cashout in Session.UserLogin.Transaction.Where(t => t.TransactionType == "Debit"))
+            {
+                <tr>
+                    <td>@cashout.TransactionName</td>
+                    <td>@cashout.TransactionId</td>
+                    <td>@cashout.TransactionType</td>
+                    <td>@cashout.TransactionLabel</td>
+                    <td>@cashout.TransactionDate.ToShortDateString()</td>
+                    <td>@cashout.TransactionAmount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@code
+{
+    private string name = "";
+    private string tag = "";
+    private decimal amount = 0;
+    private string description = "";
+
+    private CashOut newCashOut = new CashOut();
+    private Transaction newTrans = new Transaction();
+
+    private void SubmitCashOut()
+    {
+        var user = Session.UserLogin;
+
+        // Add new transaction to the user's CashIn list
+        newCashOut.CashOutId = user.CashIn.Count + 1;
+        newCashOut.CashOutName = name;
+        newCashOut.CashOutType = "Debit";
+        newCashOut.CashOutLabel = tag;
+        newCashOut.CashOutAmount = amount;
+        newCashOut.CashOutDate = DateTime.Now;
+        newCashOut.CashOutDescription = description;
+
+        newTrans.TransactionId = user.Transaction.Count + 1;
+        newTrans.TransactionLabel = tag;
+        newTrans.TransactionName = name;
+        newTrans.TransactionAmount = amount;
+        newTrans.TransactionDescription = description;
+        newTrans.TransactionType = "Debit";
+        newTrans.TransactionDate = DateTime.Now;
+
+        user.Transaction.Add(newTrans);
+
+        user.CashOut.Add(newCashOut);
+
+        // Save the updated user data
+        var users = UserService.LoadUsers();
+        var userIndex = users.FindIndex(u => u.UserID == user.UserID);
+        if (userIndex != -1)
+        {
+            users[userIndex] = user;
+            UserService.SaveUsers(users);
+        }
+
+        // Clear the input fields
+        name = "";
+        tag = "";
+        amount = 0;
+        description = "";
+
+        // Reset the CashIn object for the next submission
+        newCashOut = new CashOut();
+    }
+}
