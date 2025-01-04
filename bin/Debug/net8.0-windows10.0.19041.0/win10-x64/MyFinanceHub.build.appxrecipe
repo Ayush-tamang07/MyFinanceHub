@@ -515,7 +515,7 @@
       <PackagePath>wwwroot\MyFinanceHub.styles.css</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\scopedcss\projectbundle\MyFinanceHub.bundle.scp.css">
-      <PackagePath>wwwroot\MyFinanceHub.kux6bh3qyp.bundle.scp.css</PackagePath>
+      <PackagePath>wwwroot\MyFinanceHub.iiookefkil.bundle.scp.css</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\Components\Layout\MainLayout.razor.css">
       <PackagePath>Components\Layout\MainLayout.razor.css</PackagePath>

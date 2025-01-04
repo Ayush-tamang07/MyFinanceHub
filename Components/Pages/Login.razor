@@ -6,9 +6,10 @@
 @using MyFinanceHub.Model
 @inject SessionUser Session
 
-<h3>Login</h3>
+
 
 <div>
+    <h3>Login</h3>
     <input @bind="LoginUsername" placeholder="Username" @oninput="ClearMessage" />
     <input @bind="LoginPassword" placeholder="Password" type="password" @oninput="ClearMessage" />
     <button @onclick="LoginPage">Login</button>

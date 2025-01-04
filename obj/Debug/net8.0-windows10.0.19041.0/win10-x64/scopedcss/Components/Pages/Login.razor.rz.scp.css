@@ -1,0 +1,91 @@
+/* General container styling */
+div[b-fyhw947k08] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+/*    min-height: 100vh;*/
+    font-family: Arial, sans-serif;
+    background-color: #eaeff5;
+    padding: 20px;
+}
+
+/* Login header */
+h3[b-fyhw947k08] {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Input fields */
+input[b-fyhw947k08] {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    input:focus[b-fyhw947k08] {
+        border-color: #0056d2;
+        box-shadow: 0 0 5px rgba(0, 86, 210, 0.5);
+        outline: none;
+    }
+
+/* Button */
+button[b-fyhw947k08] {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px 20px;
+    margin: 15px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #0056d2;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    button:hover[b-fyhw947k08] {
+        background-color: #003d99;
+    }
+
+/* Link */
+a[b-fyhw947k08] {
+    text-decoration: none;
+    color: #0056d2;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+}
+
+    a:hover[b-fyhw947k08] {
+        color: #003d99;
+    }
+
+/* Centering content */
+div[b-fyhw947k08] {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background: white;
+    padding: 30px 20px;
+    border-radius: 8px;
+    max-width: 450px;
+    margin: auto;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    input[b-fyhw947k08], button[b-fyhw947k08] {
+        max-width: 100%;
+    }
+}

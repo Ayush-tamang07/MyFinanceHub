@@ -21,11 +21,48 @@
     <p>Total Debt</p>
     <p>@totalDebt</p>
 </div>
+<div>
+<p>Remaining  Debt</p>
+<p>@remainingDebt</p>
+    </div>
+
+    <div>
+        <p>Clear  Debt</p>
+        <p>@clearedDebt</p>
+    </div>
 </div>
+<div>
+    <h4>Pending debt</h4>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var debt in Session.UserLogin.Debt)
+            {
+                <tr>
+                    <td>@debt.DebtName</td>
+                    <td>@debt.DebtAmount</td>
+                    <td>@debt.DebtDate.ToShortDateString()</td>
+                    <td>@debt.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
 @code {
     private decimal totalCredit = 0;
     private decimal totalDebit = 0;
     private decimal totalDebt = 0;
+    private decimal remainingDebt = 0;
+    private decimal clearedDebt = 0;
     private decimal total = 0;
 
     protected override void OnInitialized()
@@ -44,15 +81,29 @@
                 {
                     totalDebit += transaction.TransactionAmount;
                 }
-                
-                
+
+                // Only consider 'Debt' transactions for calculating debt-related values
                 if (transaction.TransactionLabel == "Debt")
                 {
                     totalDebt += transaction.TransactionAmount;
+                    if (transaction.TransactionType == "Debit")
+                    {
+                        // Add only debit transactions related to 'Debt' for remaining debt calculation
+                        remainingDebt += transaction.TransactionAmount;
+
+                        // Track cleared debt as the sum of 'Debit' transactions related to 'Debt'
+                        clearedDebt += transaction.TransactionAmount;
+                    }
                 }
             }
 
+            // Remaining debt is total debt minus any debit payments made toward it
+            remainingDebt = totalDebt - clearedDebt;
+
+            // Total balance calculation (credit - debit)
             total = totalCredit - totalDebit;
         }
     }
 }
+
+
