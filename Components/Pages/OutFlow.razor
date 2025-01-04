@@ -24,6 +24,13 @@
         <button @onclick="SubmitCashOut">Submit</button>
     </div>
 
+    <div>
+        @if (!string.IsNullOrEmpty(message))
+        {
+            <p class="@((isSuccess ? "success-message" : "error-message"))" style="color:red;">@message</p>
+        }
+    </div>
+
     <table border="1">
         <thead>
             <tr>
@@ -55,10 +62,15 @@
 
 @code
 {
+    private decimal totalCredit = 0;
+    private decimal totalDebit = 0;
+    private decimal total = 0;
     private string name = "";
     private string tag = "";
     private decimal amount = 0;
     private string description = "";
+    private string message = ""; // For displaying success or error message
+    private bool isSuccess = false; // To track the success of the operation
 
     private CashOut newCashOut = new CashOut();
     private Transaction newTrans = new Transaction();
@@ -67,43 +79,81 @@
     {
         var user = Session.UserLogin;
 
-        // Add new transaction to the user's CashIn list
-        newCashOut.CashOutId = user.CashIn.Count + 1;
-        newCashOut.CashOutName = name;
-        newCashOut.CashOutType = "Debit";
-        newCashOut.CashOutLabel = tag;
-        newCashOut.CashOutAmount = amount;
-        newCashOut.CashOutDate = DateTime.Now;
-        newCashOut.CashOutDescription = description;
-
-        newTrans.TransactionId = user.Transaction.Count + 1;
-        newTrans.TransactionLabel = tag;
-        newTrans.TransactionName = name;
-        newTrans.TransactionAmount = amount;
-        newTrans.TransactionDescription = description;
-        newTrans.TransactionType = "Debit";
-        newTrans.TransactionDate = DateTime.Now;
-
-        user.Transaction.Add(newTrans);
-
-        user.CashOut.Add(newCashOut);
-
-        // Save the updated user data
-        var users = UserService.LoadUsers();
-        var userIndex = users.FindIndex(u => u.UserID == user.UserID);
-        if (userIndex != -1)
+        // Check if total balance is greater than or equal to the amount
+        if (total >= amount)
         {
-            users[userIndex] = user;
-            UserService.SaveUsers(users);
+            // Add new transaction to the user's CashOut list
+            newCashOut.CashOutId = user.CashOut.Count + 1;
+            newCashOut.CashOutName = name;
+            newCashOut.CashOutType = "Debit";
+            newCashOut.CashOutLabel = tag;
+            newCashOut.CashOutAmount = amount;
+            newCashOut.CashOutDate = DateTime.Now;
+            newCashOut.CashOutDescription = description;
+
+            newTrans.TransactionId = user.Transaction.Count + 1;
+            newTrans.TransactionLabel = tag;
+            newTrans.TransactionName = name;
+            newTrans.TransactionAmount = amount;
+            newTrans.TransactionDescription = description;
+            newTrans.TransactionType = "Debit";
+            newTrans.TransactionDate = DateTime.Now;
+
+            user.Transaction.Add(newTrans);
+            user.CashOut.Add(newCashOut);
+
+            // Update the user's balance
+            totalDebit += amount;
+            total = totalCredit - totalDebit;
+
+            // Save the updated user data
+            var users = UserService.LoadUsers();
+            var userIndex = users.FindIndex(u => u.UserID == user.UserID);
+            if (userIndex != -1)
+            {
+                users[userIndex] = user;
+                UserService.SaveUsers(users);
+            }
+
+            // Clear the input fields
+            name = "";
+            tag = "";
+            amount = 0;
+            description = "";
+
+            // Reset the CashOut object for the next submission
+            newCashOut = new CashOut();
+            message = "Transaction successful!";
+            isSuccess = true;
         }
+        else
+        {
+            // If balance is insufficient, display an error message
+            message = "You don't have enough balance to complete this transaction.";
+            isSuccess = false;
+        }
+    }
 
-        // Clear the input fields
-        name = "";
-        tag = "";
-        amount = 0;
-        description = "";
+    protected override void OnInitialized()
+    {
+        var loggedUser = Session.UserLogin;
 
-        // Reset the CashIn object for the next submission
-        newCashOut = new CashOut();
+        if (loggedUser?.Transaction != null)
+        {
+            foreach (var transaction in loggedUser.Transaction)
+            {
+                if (transaction.TransactionType == "Credit")
+                {
+                    totalCredit += transaction.TransactionAmount;
+                }
+                else if (transaction.TransactionType == "Debit")
+                {
+                    totalDebit += transaction.TransactionAmount;
+                }
+            }
+
+            // Total balance calculation (credit - debit)
+            total = totalCredit - totalDebit;
+        }
     }
 }

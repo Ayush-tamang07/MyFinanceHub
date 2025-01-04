@@ -1,4 +1,5 @@
 ﻿@page "/dashboard"
+@using MyFinanceHub.Model
 @inject SessionUser Session
 <h3>Welcome, @Session.UserLogin.Username!</h3>
 <div class="container">
@@ -32,6 +33,12 @@
     </div>
 </div>
 
+@* <div> *@
+@*     <input type="date" @bind="filterStartDate" placeholder="Start Date"> *@
+@*     <input type="date" @bind="filterEndDate" placeholder="End Date"> *@
+
+@*     <button @onclick="ToggleSortOrder">Sort by Date</button> *@
+@* </div> *@
 
 <div style="display:flex; justify-content:space-evenly;">
     <div>
@@ -188,6 +195,9 @@
     private decimal remainingDebt = 0;
     private decimal clearedDebt = 0;
     private decimal total = 0;
+    // private DateTime? filterStartDate = null;
+    // private DateTime? filterEndDate = null;
+    // private bool isAscendingOrder = true;
 
     protected override void OnInitialized()
     {
@@ -228,6 +238,30 @@
             total = totalCredit - totalDebit;
         }
     }
+    // private IEnumerable<Transaction> GetFilteredTransactions()
+    // {
+    //     var transactions = Session.UserLogin.Transaction.AsQueryable();
+       
+    //     if (filterStartDate.HasValue)
+    //     {
+    //         transactions = transactions.Where(t => t.TransactionDate >= filterStartDate.Value);
+    //     }
+
+    //     if (filterEndDate.HasValue)
+    //     {
+    //         transactions = transactions.Where(t => t.TransactionDate <= filterEndDate.Value);
+    //     }
+      
+    //     return isAscendingOrder
+    //         ? transactions.OrderBy(t => t.TransactionDate)
+    //         : transactions.OrderByDescending(t => t.TransactionDate);
+    // }
+    // private void ToggleSortOrder()
+    // {
+        
+    //     isAscendingOrder = !isAscendingOrder;
+    // }
+}
 }
 
 
