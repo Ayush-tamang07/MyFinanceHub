@@ -30,7 +30,7 @@
     <AppXManifest Include="C:\Users\Ayush\source\repos\MyFinanceHub\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-01-04T19:15:34.620</Modified>
+      <Modified>2025-01-04T20:35:09.444</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
@@ -44,11 +44,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MyFinanceHub.dll">
       <PackagePath>MyFinanceHub.dll</PackagePath>
-      <Modified>2025-01-04T19:15:34.327</Modified>
+      <Modified>2025-01-04T20:35:08.728</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>MyFinanceHub.exe</PackagePath>
-      <Modified>2025-01-04T19:15:34.332</Modified>
+      <Modified>2025-01-04T20:35:08.738</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>

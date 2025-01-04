@@ -31,31 +31,155 @@
         <p>@clearedDebt</p>
     </div>
 </div>
-<div>
-    <h4>Pending debt</h4>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Amount</th>
-                <th>Date</th>
-                <th>Status</th>
-            </tr>
-        </thead>
 
-        <tbody>
-            @foreach (var debt in Session.UserLogin.Debt)
-            {
+
+<div style="display:flex; justify-content:space-evenly;">
+    <div>
+        <!-- Top 5 Highest Transactions -->
+        <div>
+            <h3>Top 5 Highest Transactions</h3>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var transaction in Session.UserLogin.Transaction
+                    .OrderByDescending(t => t.TransactionAmount)
+                    .Take(5))
+                    {
+                        <tr>
+                            <td>@transaction.TransactionName</td>
+                            <td>@transaction.TransactionAmount</td>
+                            <td>@transaction.TransactionType</td>
+                            <td>@transaction.TransactionDate.ToShortDateString()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Top 5 Lowest Transactions -->
+        <div>
+            <h3>Top 5 Lowest Transactions</h3>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var transaction in Session.UserLogin.Transaction
+                    .OrderBy(t => t.TransactionAmount)
+                    .Take(5))
+                    {
+                        <tr>
+                            <td>@transaction.TransactionName</td>
+                            <td>@transaction.TransactionAmount</td>
+                            <td>@transaction.TransactionType</td>
+                            <td>@transaction.TransactionDate.ToShortDateString()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+        <h4>Pending Debt</h4>
+        <table border="1">
+            <thead>
                 <tr>
-                    <td>@debt.DebtName</td>
-                    <td>@debt.DebtAmount</td>
-                    <td>@debt.DebtDate.ToShortDateString()</td>
-                    <td>@debt.Status</td>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Status</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+
+            <tbody>
+                @foreach (var debt in Session.UserLogin.Debt
+                .OrderBy(t => t.DebtAmount)
+                .Take(5))
+                {
+                    <tr>
+                        <td>@debt.DebtName</td>
+                        <td>@debt.DebtAmount</td>
+                        <td>@debt.DebtDate.ToShortDateString()</td>
+                        <td>@debt.Status</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
+
+
+
+@* <div> *@
+@*     <h3>Cash In</h3> *@
+@*     <table border="1"> *@
+@*         <thead> *@
+@*             <tr> *@
+@*                 <th>Name</th> *@
+@*                 <th>ID</th> *@
+@*                 <th>Type</th> *@
+@*                 <th>Tag</th> *@
+@*                 <th>Date</th> *@
+@*                 <th>Amount</th> *@
+@*             </tr> *@
+@*         </thead> *@
+@*         <tbody> *@
+@*             @foreach (var cashin in Session.UserLogin.Transaction.Where(t => t.TransactionType == "Credit")) *@
+@*             { *@
+@*                 <tr> *@
+@*                     <td>@cashin.TransactionName</td> *@
+@*                     <td>@cashin.TransactionId</td> *@
+@*                     <td>@cashin.TransactionType</td> *@
+@*                     <td>@cashin.TransactionLabel</td> *@
+@*                     <td>@cashin.TransactionDate.ToShortDateString()</td> *@
+@*                     <td>@cashin.TransactionAmount</td> *@
+@*                 </tr> *@
+@*             } *@
+@*         </tbody> *@
+@*     </table> *@
+@* </div> *@
+@* <div> *@
+@*     <h3>Cash Outflow</h3> *@
+@*     <table border="1"> *@
+@*         <thead> *@
+@*             <tr> *@
+@*                 <th>Name</th> *@
+@*                 <th>ID</th> *@
+@*                 <th>Type</th> *@
+@*                 <th>Tag</th> *@
+@*                 <th>Date</th> *@
+@*                 <th>Description</th> *@
+@*                 <th>Amount</th> *@
+@*             </tr> *@
+@*         </thead> *@
+@*         <tbody> *@
+@*             @foreach (var cashout in Session.UserLogin.Transaction.Where(t => t.TransactionType == "Debit")) *@
+@*             { *@
+@*                 <tr> *@
+@*                     <td>@cashout.TransactionName</td> *@
+@*                     <td>@cashout.TransactionId</td> *@
+@*                     <td>@cashout.TransactionType</td> *@
+@*                     <td>@cashout.TransactionLabel</td> *@
+@*                     <td>@cashout.TransactionDate.ToShortDateString()</td> *@
+@*                     <td>@cashout.TransactionDescription</td> *@
+@*                     <td>@cashout.TransactionAmount</td> *@
+@*                 </tr> *@
+@*             } *@
+@*         </tbody> *@
+@*     </table> *@
+@* </div> *@
 
 @code {
     private decimal totalCredit = 0;
