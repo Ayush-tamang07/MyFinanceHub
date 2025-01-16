@@ -6,12 +6,16 @@
 @using MyFinanceHub.Model
 @inject SessionUser Session
 
-
-
 <div>
     <h3>Login</h3>
     <input @bind="LoginUsername" placeholder="Username" @oninput="ClearMessage" />
     <input @bind="LoginPassword" placeholder="Password" type="password" @oninput="ClearMessage" />
+    
+    <select @bind="SelectedCurrency">
+        <option value="NPR">NPR</option>
+        <option value="USD">USD</option>
+    </select>
+    
     <button @onclick="LoginPage">Login</button>
     <a href="/register">Register</a>
 </div>
@@ -25,7 +29,7 @@
     private string LoginUsername = "";
     private string LoginPassword = "";
     private string Message = "";
-
+    private string SelectedCurrency = "NPR"; // Default currency
     private List<User> Users = new();
 
     protected override void OnInitialized()
@@ -39,9 +43,8 @@
 
         if (user != null && UserService.ValidatePassword(LoginPassword, user.Password))
         {
-            Console.WriteLine("i am here : ", user);
+            Console.WriteLine($"User logged in with {SelectedCurrency} currency: ", user);
             Session.UserLogin = user;
-            // Redirect to dashboard if login is successful
             NavigationManager.NavigateTo("/dashboard");
         }
         else

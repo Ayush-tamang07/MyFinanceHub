@@ -1,14 +1,31 @@
-/* Container styling */
+
+.top-row[b-v1gm5w1r6x] {
+    background-color: white;
+    border: 1px solid #d6d5d5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4.3rem;
+    border-radius: 4rem;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+}
+
+.top-row span[b-v1gm5w1r6x] {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+}
+
 .container[b-v1gm5w1r6x] {
     display: flex;
-    justify-content: space-between; /* Evenly spaces the cards */
-    gap: 20px; /* Adds spacing between cards */
+    justify-content: space-between;
+    gap: 20px;
     padding: 20px;
 }
 
-    /* Card styling */
     .container > div[b-v1gm5w1r6x] {
-        flex: 1; /* Ensures equal width for all cards */
+        flex: 1;
         border: 1px solid #ddd;
         border-radius: 10px;
         padding: 15px;
@@ -17,7 +34,6 @@
         text-align: center;
     }
 
-        /* Card title */
         .container > div p:first-child[b-v1gm5w1r6x] {
             font-weight: bold;
             margin-bottom: 10px;
@@ -25,14 +41,12 @@
             color: #555;
         }
 
-        /* Card value */
         .container > div p:last-child[b-v1gm5w1r6x] {
             font-size: 1.5rem;
             color: #333;
             font-weight: bold;
         }
 
-/* Table styling */
 table[b-v1gm5w1r6x] {
     width: 100%;
     border-collapse: collapse;
@@ -68,7 +82,38 @@ tr:hover[b-v1gm5w1r6x] {
     cursor: pointer;
 }
 
-/* Responsive Design for Table */
+.filter-section[b-v1gm5w1r6x] {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    justify-content: center;
+}
+
+.filter-input[b-v1gm5w1r6x] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 180px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filter-button[b-v1gm5w1r6x] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0056d2;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+    .filter-button:hover[b-v1gm5w1r6x] {
+        background-color: #003a91;
+    }
+
 @media (max-width: 768px) {
     .container[b-v1gm5w1r6x] {
         flex-direction: column;
@@ -83,4 +128,16 @@ tr:hover[b-v1gm5w1r6x] {
     th[b-v1gm5w1r6x], td[b-v1gm5w1r6x] {
         padding: 10px;
     }
+
+    .filter-section[b-v1gm5w1r6x] {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filter-input[b-v1gm5w1r6x] {
+        width: 100%;
+        max-width: 300px;
+    }
 }
+
+

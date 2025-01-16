@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XiLPUgVxOFwas2FnOu4G0Ru70I6ArLSJxVpgw+3Ze/U=",
+  "Hash": "eE9/Ux/KqS7eY0Nl7q+7Yp5Rohne0BaJR+TV5DhI3Cw=",
   "Source": "MyFinanceHub",
   "BasePath": "/",
   "Mode": "Root",
@@ -31,8 +31,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "iiookefkil",
-      "Integrity": "Gg6MdTg1Zd4JdwBKl332TDZ+oFHiwWdwswgbhJZ+/xw=",
+      "Fingerprint": "6zhwvh8z8h",
+      "Integrity": "AsbdOnGK+6Qc6xMRnmZvOu9xKitH0H01KidHwYcBwEo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Ayush\\source\\repos\\MyFinanceHub\\obj\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\MyFinanceHub.styles.css"
@@ -52,8 +52,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "iiookefkil",
-      "Integrity": "Gg6MdTg1Zd4JdwBKl332TDZ+oFHiwWdwswgbhJZ+/xw=",
+      "Fingerprint": "6zhwvh8z8h",
+      "Integrity": "AsbdOnGK+6Qc6xMRnmZvOu9xKitH0H01KidHwYcBwEo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Ayush\\source\\repos\\MyFinanceHub\\obj\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\scopedcss\\projectbundle\\MyFinanceHub.bundle.scp.css"
@@ -576,6 +576,96 @@
       ]
     },
     {
+      "Route": "MyFinanceHub.6zhwvh8z8h.bundle.scp.css",
+      "AssetFile": "C:\\Users\\Ayush\\source\\repos\\MyFinanceHub\\obj\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\scopedcss\\projectbundle\\MyFinanceHub.bundle.scp.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "24715"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"AsbdOnGK+6Qc6xMRnmZvOu9xKitH0H01KidHwYcBwEo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 16 Jan 2025 07:16:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "6zhwvh8z8h"
+        },
+        {
+          "Name": "label",
+          "Value": "MyFinanceHub.bundle.scp.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-AsbdOnGK+6Qc6xMRnmZvOu9xKitH0H01KidHwYcBwEo="
+        }
+      ]
+    },
+    {
+      "Route": "MyFinanceHub.6zhwvh8z8h.styles.css",
+      "AssetFile": "C:\\Users\\Ayush\\source\\repos\\MyFinanceHub\\obj\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\MyFinanceHub.styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "24715"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"AsbdOnGK+6Qc6xMRnmZvOu9xKitH0H01KidHwYcBwEo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 16 Jan 2025 07:16:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "6zhwvh8z8h"
+        },
+        {
+          "Name": "label",
+          "Value": "MyFinanceHub.styles.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-AsbdOnGK+6Qc6xMRnmZvOu9xKitH0H01KidHwYcBwEo="
+        }
+      ]
+    },
+    {
       "Route": "MyFinanceHub.bundle.scp.css",
       "AssetFile": "C:\\Users\\Ayush\\source\\repos\\MyFinanceHub\\obj\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\scopedcss\\projectbundle\\MyFinanceHub.bundle.scp.css",
       "Selectors": [],
@@ -586,7 +676,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "21481"
+          "Value": "24715"
         },
         {
           "Name": "Content-Type",
@@ -594,11 +684,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Gg6MdTg1Zd4JdwBKl332TDZ+oFHiwWdwswgbhJZ+/xw=\""
+          "Value": "\"AsbdOnGK+6Qc6xMRnmZvOu9xKitH0H01KidHwYcBwEo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 04 Jan 2025 18:48:55 GMT"
+          "Value": "Thu, 16 Jan 2025 07:16:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -608,97 +698,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Gg6MdTg1Zd4JdwBKl332TDZ+oFHiwWdwswgbhJZ+/xw="
-        }
-      ]
-    },
-    {
-      "Route": "MyFinanceHub.iiookefkil.bundle.scp.css",
-      "AssetFile": "C:\\Users\\Ayush\\source\\repos\\MyFinanceHub\\obj\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\scopedcss\\projectbundle\\MyFinanceHub.bundle.scp.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "21481"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"Gg6MdTg1Zd4JdwBKl332TDZ+oFHiwWdwswgbhJZ+/xw=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 04 Jan 2025 18:48:55 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "iiookefkil"
-        },
-        {
-          "Name": "label",
-          "Value": "MyFinanceHub.bundle.scp.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-Gg6MdTg1Zd4JdwBKl332TDZ+oFHiwWdwswgbhJZ+/xw="
-        }
-      ]
-    },
-    {
-      "Route": "MyFinanceHub.iiookefkil.styles.css",
-      "AssetFile": "C:\\Users\\Ayush\\source\\repos\\MyFinanceHub\\obj\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\MyFinanceHub.styles.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "21481"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"Gg6MdTg1Zd4JdwBKl332TDZ+oFHiwWdwswgbhJZ+/xw=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 04 Jan 2025 18:48:55 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "iiookefkil"
-        },
-        {
-          "Name": "label",
-          "Value": "MyFinanceHub.styles.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-Gg6MdTg1Zd4JdwBKl332TDZ+oFHiwWdwswgbhJZ+/xw="
+          "Value": "sha256-AsbdOnGK+6Qc6xMRnmZvOu9xKitH0H01KidHwYcBwEo="
         }
       ]
     },
@@ -713,7 +713,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "21481"
+          "Value": "24715"
         },
         {
           "Name": "Content-Type",
@@ -721,11 +721,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Gg6MdTg1Zd4JdwBKl332TDZ+oFHiwWdwswgbhJZ+/xw=\""
+          "Value": "\"AsbdOnGK+6Qc6xMRnmZvOu9xKitH0H01KidHwYcBwEo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 04 Jan 2025 18:48:55 GMT"
+          "Value": "Thu, 16 Jan 2025 07:16:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -735,7 +735,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Gg6MdTg1Zd4JdwBKl332TDZ+oFHiwWdwswgbhJZ+/xw="
+          "Value": "sha256-AsbdOnGK+6Qc6xMRnmZvOu9xKitH0H01KidHwYcBwEo="
         }
       ]
     }

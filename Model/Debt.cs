@@ -16,5 +16,6 @@ namespace MyFinanceHub.Model
         public DateTime DebtDate { get; set; } = DateTime.Now;
         public string Status { get; set; } = string.Empty;
         public List<DebtClear> DebtClear { get; set; } = new List<DebtClear>();
+
     }
 }

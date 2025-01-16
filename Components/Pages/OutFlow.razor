@@ -11,8 +11,31 @@
         </div>
         <div class="text-row">
             <p>Tag</p>
-            <input @bind="tag" />
+            <select @bind="Tag" @bind:event="onchange">
+                <option value="">-- Select Tag --</option>
+                <option value="Debt">Debt</option>
+                <option value="Rent">Rent</option>
+                <option value="Food">Food</option>
+                <option value="Drinks">Drinks</option>
+                <option value="Clothes">Clothes</option>
+                <option value="Gadgets">Gadgets</option>
+                <option value="Miscellaneous">Miscellaneous</option>
+                <option value="Fuel">Fuel</option>
+                <option value="EMI">EMI</option>
+                <option value="Party">Party</option>
+                <option value="CustomTag">Custom Tag</option>
+            </select>
         </div>
+
+        <!-- Custom Tag Input -->
+        @if (isCustomTag)
+        {
+            <div class="text-row">
+                <p>Custom Tag</p>
+                <input @bind="customTag" placeholder="Enter custom tag" />
+            </div>
+        }
+
         <div class="text-row">
             <p>Amount</p>
             <input @bind="amount" type="number" />
@@ -67,37 +90,62 @@
     private decimal total = 0;
     private string name = "";
     private string tag = "";
+    private string customTag = "";
     private decimal amount = 0;
     private string description = "";
     private string message = ""; // For displaying success or error message
     private bool isSuccess = false; // To track the success of the operation
+    private bool isCustomTag = false;
 
-    private CashOut newCashOut = new CashOut();
-    private Transaction newTrans = new Transaction();
+    private string Tag
+    {
+        get => tag;
+        set
+        {
+            tag = value;
+            isCustomTag = tag == "CustomTag";
+        }
+    }
 
     private void SubmitCashOut()
     {
+        if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(tag) || (isCustomTag && string.IsNullOrWhiteSpace(customTag)) || amount <= 0 || string.IsNullOrWhiteSpace(description))
+        {
+            message = "All fields are required, and amount must be greater than zero.";
+            isSuccess = false;
+            return;
+        }
+
         var user = Session.UserLogin;
+
+        // Use custom tag if "CustomTag" is selected, otherwise use the dropdown value
+        var selectedTag = isCustomTag ? customTag : tag;
 
         // Check if total balance is greater than or equal to the amount
         if (total >= amount)
         {
             // Add new transaction to the user's CashOut list
-            newCashOut.CashOutId = user.CashOut.Count + 1;
-            newCashOut.CashOutName = name;
-            newCashOut.CashOutType = "Debit";
-            newCashOut.CashOutLabel = tag;
-            newCashOut.CashOutAmount = amount;
-            newCashOut.CashOutDate = DateTime.Now;
-            newCashOut.CashOutDescription = description;
+            var newCashOut = new CashOut
+                {
+                    CashOutId = user.CashOut.Count + 1,
+                    CashOutName = name,
+                    CashOutType = "Debit",
+                    CashOutLabel = selectedTag,
+                    CashOutAmount = amount,
+                    CashOutDate = DateTime.Now,
+                    CashOutDescription = description
+                };
 
-            newTrans.TransactionId = user.Transaction.Count + 1;
-            newTrans.TransactionLabel = tag;
-            newTrans.TransactionName = name;
-            newTrans.TransactionAmount = amount;
-            newTrans.TransactionDescription = description;
-            newTrans.TransactionType = "Debit";
-            newTrans.TransactionDate = DateTime.Now;
+            var newTrans = new Transaction
+                {
+                    TransactionId = user.Transaction.Count + 1,
+                    TransactionLabel = selectedTag,
+                    TransactionName = name,
+                    TransactionAmount = amount,
+                    TransactionDescription = description,
+                    TransactionType = "Debit",
+                    TransactionDate = DateTime.Now
+                };
 
             user.Transaction.Add(newTrans);
             user.CashOut.Add(newCashOut);
@@ -118,11 +166,11 @@
             // Clear the input fields
             name = "";
             tag = "";
+            customTag = "";
             amount = 0;
             description = "";
+            isCustomTag = false;
 
-            // Reset the CashOut object for the next submission
-            newCashOut = new CashOut();
             message = "Transaction successful!";
             isSuccess = true;
         }

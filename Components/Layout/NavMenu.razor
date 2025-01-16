@@ -1,6 +1,10 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@inject SessionUser SessionUser
+@inject NavigationManager NavigationManager
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">MyFinanceHub</a>
+        <a class="navbar-brand" href="dashboard">MyFinanceHub</a>
     </div>
 </div>
 
@@ -15,23 +19,36 @@
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="transaction">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Transaction
+                <span class="bi bi-arrow-left-right" aria-hidden="true"></span> Transaction
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="inflow">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Inflow
+                <span class="bi bi-arrow-down-circle-fill" aria-hidden="true"></span> Inflow
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="outflow">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Outflow
+                <span class="bi bi-arrow-up-circle-fill" aria-hidden="true"></span> Outflow
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="debtPge">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Debt
+                <span class="bi bi-cash-stack" aria-hidden="true"></span> Debt
             </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <button class="btn btn-danger" @onclick="HandleLogout">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Log out
+            </button>
         </div>
     </nav>
 </div>
+@code {
+    private void HandleLogout()
+    {
+        SessionUser.Logout();
+
+        NavigationManager.NavigateTo("/");
+    }
+}

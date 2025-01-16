@@ -15,6 +15,11 @@
     </div>
 </div>
 
+@if (!string.IsNullOrEmpty(Message))
+{
+        <p>@Message</p>
+}
+
 @code {
     private int debtId;
     private decimal amount = 0;
@@ -24,6 +29,7 @@
     private decimal totalBalance = 0;
     private DebtClear newClear = new DebtClear();
     private Transaction newTrans = new Transaction();
+    private string Message = "";
 
     protected override void OnInitialized()
     {
@@ -33,7 +39,6 @@
         if (query.TryGetValue("DebtId", out var id))
         {
             debtId = int.Parse(id);
-            // Use debtId to fetch or process data
         }
 
         var loggedUser = Session.UserLogin;
@@ -61,29 +66,40 @@
         var user = Session.UserLogin;
         var debt = user.Debt.FirstOrDefault(d => d.DebtId == debtId);
 
+        if (debt == null)
+        {
+            Message = "Debt not found.";
+            return;
+        }
+
         decimal debts = debt.DebtAmount;
 
-        if (debts <= amount)
+        if (amount <= 0)
         {
+            Message = "Amount must be greater than zero.";
             return;
         }
 
-        else if(amount > totalBalance)
+        if (amount > totalBalance)
         {
+            Message = "Insufficient balance to clear debt.";
             return;
         }
 
-        else
+        if (amount > debts)
         {
+            Message = "Amount exceeds the remaining debt.";
+            return;
+        }
 
-            // Add new transaction to the user's Debt list
-            newClear.DebtClearId = debt.DebtClear.Count + 1;
-            newClear.DebtClearType = "Debit";
-            newClear.DebtClearAmount = amount;
-            newClear.DebtClearDate = DateTime.Now;
+        // Add new transaction to the user's Debt list
+        newClear.DebtClearId = debt.DebtClear.Count + 1;
+        newClear.DebtClearType = "Debit";
+        newClear.DebtClearAmount = amount;
+        newClear.DebtClearDate = DateTime.Now;
 
-            debt.DebtAmount = debts - amount;
-            debt.Status = "Pending";
+        debt.DebtAmount -= amount;
+        debt.Status = debt.DebtAmount == 0 ? "Cleared" : "Pending";
 
         newTrans.TransactionId = user.Transaction.Count + 1;
         newTrans.TransactionName = "Loan Paid";
@@ -106,10 +122,9 @@
 
         // Clear the input fields
         amount = 0;
+        Message = "Debt cleared successfully.";
 
-        // Reset the Debt object for the next submission
+        // Reset the DebtClear object for the next submission
         newClear = new DebtClear();
-        }
-
     }
 }

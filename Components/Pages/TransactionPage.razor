@@ -5,14 +5,24 @@
 @inject NavigationManager NavigationManager
 
 <div>
-    <div>
-        <p>Total Balance</p>
-        <p>@total</p>
-    </div>
-    <div class="search-bar">
-        <input type="text" @bind="searchKeyword" placeholder="Search by label..." class="search-input">
+    <!-- Total Balance and Transactions -->
+    <div class="balance-container">
+        <div>
+            <p>Total Balance</p>
+            <p>@total</p>
+        </div>
+        <div>
+            <p>Total Transactions</p>
+            <p>@totalTransactions</p>
+        </div>
     </div>
 
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" @bind="searchKeyword" placeholder="Search by name or label..." class="search-input">
+    </div>
+
+    <!-- Filters -->
     <div class="filters">
         <select @bind="filterTransactionType">
             <option value="">All Types</option>
@@ -28,14 +38,23 @@
             <option value="Drinks">Drinks</option>
             <option value="Clothes">Clothes</option>
             <option value="Gadgets">Gadgets</option>
+            <option value="Miscellaneous">Miscellaneous</option>
+            <option value="Fuel">Fuel</option>
+            <option value="EMI">EMI</option>
+            <option value="Party">Party</option>
         </select>
 
         <input type="date" @bind="filterStartDate" placeholder="Start Date">
         <input type="date" @bind="filterEndDate" placeholder="End Date">
 
-        <button @onclick="ToggleSortOrder">Sort by Date</button>
+        <!-- Sorting Dropdown -->
+        <select @bind="SortOrder">
+            <option value="asc">Date: Oldest First</option>
+            <option value="desc">Date: Newest First</option>
+        </select>
     </div>
 
+    <!-- Transactions Table -->
     <table border="1">
         <thead>
             <tr>
@@ -45,6 +64,7 @@
                 <th>Label</th>
                 <th>Date</th>
                 <th>Amount</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -54,9 +74,45 @@
                     <td>@transaction.TransactionName</td>
                     <td>@transaction.TransactionId</td>
                     <td>@transaction.TransactionType</td>
-                    <td>@transaction.TransactionLabel</td>
+                    <td>
+                        @if (editTransactionId == transaction.TransactionId)
+                        {
+                            <select value="@editableLabel" @onchange="HandleTagChange">
+                                <option value="Debt">Debt</option>
+                                <option value="Rent">Rent</option>
+                                <option value="Food">Food</option>
+                                <option value="Drinks">Drinks</option>
+                                <option value="Clothes">Clothes</option>
+                                <option value="Gadgets">Gadgets</option>
+                                <option value="Miscellaneous">Miscellaneous</option>
+                                <option value="Fuel">Fuel</option>
+                                <option value="EMI">EMI</option>
+                                <option value="Party">Party</option>
+                                <option value="CustomTag">Custom Tag</option>
+                            </select>
+                            @if (isCustomTag)
+                            {
+                                <input @bind="customTag" placeholder="Enter custom tag" />
+                            }
+                        }
+                        else
+                        {
+                            @transaction.TransactionLabel
+                        }
+                    </td>
                     <td>@transaction.TransactionDate.ToShortDateString()</td>
                     <td>$@transaction.TransactionAmount</td>
+                    <td>
+                        @if (editTransactionId == transaction.TransactionId)
+                        {
+                            <button @onclick="() => SaveLabel(transaction.TransactionId)">Save</button>
+                            <button @onclick="CancelEdit">Cancel</button>
+                        }
+                        else
+                        {
+                            <button @onclick="() => StartEdit(transaction.TransactionId, transaction.TransactionLabel)">Edit</button>
+                        }
+                    </td>
                 </tr>
             }
         </tbody>
@@ -70,11 +126,30 @@
     private string filterTransactionLabel = string.Empty;
     private DateTime? filterStartDate = null;
     private DateTime? filterEndDate = null;
-    private bool isAscendingOrder = true;
+
+    private string _sortOrder = "asc"; // Default sort order
+    private string SortOrder
+    {
+        get => _sortOrder;
+        set
+        {
+            if (_sortOrder != value)
+            {
+                _sortOrder = value;
+                StateHasChanged(); // Trigger UI refresh
+            }
+        }
+    }
 
     private decimal totalCredit = 0;
     private decimal totalDebit = 0;
     private decimal total = 0;
+    private int totalTransactions = 0; // Tracks total transactions count
+
+    private int editTransactionId = -1; // Tracks the currently edited transaction ID
+    private string editableLabel = string.Empty; // Stores the selected label for editing
+    private string customTag = string.Empty; // Stores the custom tag value
+    private bool isCustomTag = false; // Tracks whether a custom tag is being added
 
     protected override void OnInitialized()
     {
@@ -95,6 +170,7 @@
             }
 
             total = totalCredit - totalDebit;
+            totalTransactions = loggedUser.Transaction.Count;
         }
     }
 
@@ -125,21 +201,66 @@
             transactions = transactions.Where(t => t.TransactionDate <= filterEndDate.Value);
         }
 
-        // Search by Keyword (Label)
+        // Search by Keyword (Name or Label)
         if (!string.IsNullOrEmpty(searchKeyword))
         {
-            transactions = transactions.Where(t => t.TransactionName.Contains(searchKeyword, StringComparison.OrdinalIgnoreCase));
+            transactions = transactions.Where(t =>
+                (!string.IsNullOrEmpty(t.TransactionName) && t.TransactionName.Contains(searchKeyword, StringComparison.OrdinalIgnoreCase)) ||
+                (!string.IsNullOrEmpty(t.TransactionLabel) && t.TransactionLabel.Contains(searchKeyword, StringComparison.OrdinalIgnoreCase)));
         }
 
         // Sort by Date
-        return isAscendingOrder
+        return SortOrder == "asc"
             ? transactions.OrderBy(t => t.TransactionDate)
             : transactions.OrderByDescending(t => t.TransactionDate);
     }
 
-    private void ToggleSortOrder()
+    private void StartEdit(int transactionId, string currentLabel)
     {
-        // Toggle sorting order
-        isAscendingOrder = !isAscendingOrder;
+        editTransactionId = transactionId;
+        editableLabel = currentLabel;
+        isCustomTag = currentLabel == "CustomTag";
+        customTag = currentLabel == "CustomTag" ? currentLabel : string.Empty;
+    }
+
+    private void SaveLabel(int transactionId)
+    {
+        var user = Session.UserLogin;
+        var transaction = user.Transaction.FirstOrDefault(t => t.TransactionId == transactionId);
+
+        if (transaction != null)
+        {
+            transaction.TransactionLabel = isCustomTag ? customTag : editableLabel;
+
+            // Save the updated user data
+            var users = UserService.LoadUsers();
+            var userIndex = users.FindIndex(u => u.UserID == user.UserID);
+            if (userIndex != -1)
+            {
+                users[userIndex] = user;
+                UserService.SaveUsers(users);
+            }
+        }
+
+        editTransactionId = -1;
+        editableLabel = string.Empty;
+        customTag = string.Empty;
+        isCustomTag = false;
+    }
+
+    private void CancelEdit()
+    {
+        editTransactionId = -1;
+        editableLabel = string.Empty;
+        customTag = string.Empty;
+        isCustomTag = false;
+    }
+
+    private void HandleTagChange(ChangeEventArgs e)
+    {
+        editableLabel = e.Value.ToString();
+        isCustomTag = editableLabel == "CustomTag";
     }
 }
+
+

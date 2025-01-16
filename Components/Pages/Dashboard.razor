@@ -1,44 +1,46 @@
 ﻿@page "/dashboard"
 @using MyFinanceHub.Model
 @inject SessionUser Session
+<div class="top-row px-4">
+    <span>Dashboard</span>
+</div>
 <h3>Welcome, @Session.UserLogin.Username!</h3>
 <div class="container">
-<div>
-    <p>My Balance</p>
-    <p>@total</p>
-</div>
-
-<div>
-    <p>Total Inflow</p>
-    <p>@totalCredit</p>
-</div>
-
-<div>
-    <p>Total OutFlow</p>
-    <p>@totalDebit</p>
-</div>
-
-<div>
-    <p>Total Debt</p>
-    <p>@totalDebt</p>
-</div>
-<div>
-<p>Remaining  Debt</p>
-<p>@remainingDebt</p>
+    <div>
+        <p>My Balance</p>
+        <p>@total</p>
     </div>
 
     <div>
-        <p>Clear  Debt</p>
+        <p>Total Inflow</p>
+        <p>@totalCredit</p>
+    </div>
+
+    <div>
+        <p>Total OutFlow</p>
+        <p>@totalDebit</p>
+    </div>
+
+    <div>
+        <p>Total Debt</p>
+        <p>@totalDebt</p>
+    </div>
+    <div>
+        <p>Remaining Debt</p>
+        <p>@remainingDebt</p>
+    </div>
+
+    <div>
+        <p>Clear Debt</p>
         <p>@clearedDebt</p>
     </div>
 </div>
 
-@* <div> *@
-@*     <input type="date" @bind="filterStartDate" placeholder="Start Date"> *@
-@*     <input type="date" @bind="filterEndDate" placeholder="End Date"> *@
-
-@*     <button @onclick="ToggleSortOrder">Sort by Date</button> *@
-@* </div> *@
+<div class="filter-section">
+    <input type="date" @bind="filterStartDate" placeholder="Start Date" class="filter-input">
+    <input type="date" @bind="filterEndDate" placeholder="End Date" class="filter-input">
+    <button @onclick="FilterTransactions" class="filter-button">Apply Filters</button>
+</div>
 
 <div style="display:flex; justify-content:space-evenly;">
     <div>
@@ -55,9 +57,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var transaction in Session.UserLogin.Transaction
-                    .OrderByDescending(t => t.TransactionAmount)
-                    .Take(5))
+                    @foreach (var transaction in GetTopTransactions(true))
                     {
                         <tr>
                             <td>@transaction.TransactionName</td>
@@ -69,7 +69,7 @@
                 </tbody>
             </table>
         </div>
-        
+
         <!-- Top 5 Lowest Transactions -->
         <div>
             <h3>Top 5 Lowest Transactions</h3>
@@ -83,9 +83,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var transaction in Session.UserLogin.Transaction
-                    .OrderBy(t => t.TransactionAmount)
-                    .Take(5))
+                    @foreach (var transaction in GetTopTransactions(false))
                     {
                         <tr>
                             <td>@transaction.TransactionName</td>
@@ -111,9 +109,7 @@
             </thead>
 
             <tbody>
-                @foreach (var debt in Session.UserLogin.Debt
-                .OrderBy(t => t.DebtAmount)
-                .Take(5))
+                @foreach (var debt in GetFilteredDebts())
                 {
                     <tr>
                         <td>@debt.DebtName</td>
@@ -127,67 +123,6 @@
     </div>
 </div>
 
-
-
-@* <div> *@
-@*     <h3>Cash In</h3> *@
-@*     <table border="1"> *@
-@*         <thead> *@
-@*             <tr> *@
-@*                 <th>Name</th> *@
-@*                 <th>ID</th> *@
-@*                 <th>Type</th> *@
-@*                 <th>Tag</th> *@
-@*                 <th>Date</th> *@
-@*                 <th>Amount</th> *@
-@*             </tr> *@
-@*         </thead> *@
-@*         <tbody> *@
-@*             @foreach (var cashin in Session.UserLogin.Transaction.Where(t => t.TransactionType == "Credit")) *@
-@*             { *@
-@*                 <tr> *@
-@*                     <td>@cashin.TransactionName</td> *@
-@*                     <td>@cashin.TransactionId</td> *@
-@*                     <td>@cashin.TransactionType</td> *@
-@*                     <td>@cashin.TransactionLabel</td> *@
-@*                     <td>@cashin.TransactionDate.ToShortDateString()</td> *@
-@*                     <td>@cashin.TransactionAmount</td> *@
-@*                 </tr> *@
-@*             } *@
-@*         </tbody> *@
-@*     </table> *@
-@* </div> *@
-@* <div> *@
-@*     <h3>Cash Outflow</h3> *@
-@*     <table border="1"> *@
-@*         <thead> *@
-@*             <tr> *@
-@*                 <th>Name</th> *@
-@*                 <th>ID</th> *@
-@*                 <th>Type</th> *@
-@*                 <th>Tag</th> *@
-@*                 <th>Date</th> *@
-@*                 <th>Description</th> *@
-@*                 <th>Amount</th> *@
-@*             </tr> *@
-@*         </thead> *@
-@*         <tbody> *@
-@*             @foreach (var cashout in Session.UserLogin.Transaction.Where(t => t.TransactionType == "Debit")) *@
-@*             { *@
-@*                 <tr> *@
-@*                     <td>@cashout.TransactionName</td> *@
-@*                     <td>@cashout.TransactionId</td> *@
-@*                     <td>@cashout.TransactionType</td> *@
-@*                     <td>@cashout.TransactionLabel</td> *@
-@*                     <td>@cashout.TransactionDate.ToShortDateString()</td> *@
-@*                     <td>@cashout.TransactionDescription</td> *@
-@*                     <td>@cashout.TransactionAmount</td> *@
-@*                 </tr> *@
-@*             } *@
-@*         </tbody> *@
-@*     </table> *@
-@* </div> *@
-
 @code {
     private decimal totalCredit = 0;
     private decimal totalDebit = 0;
@@ -195,11 +130,15 @@
     private decimal remainingDebt = 0;
     private decimal clearedDebt = 0;
     private decimal total = 0;
-    // private DateTime? filterStartDate = null;
-    // private DateTime? filterEndDate = null;
-    // private bool isAscendingOrder = true;
+    private DateTime? filterStartDate = null;
+    private DateTime? filterEndDate = null;
 
     protected override void OnInitialized()
+    {
+        CalculateTotals();
+    }
+
+    private void CalculateTotals()
     {
         var loggedUser = Session.UserLogin;
 
@@ -216,52 +155,62 @@
                     totalDebit += transaction.TransactionAmount;
                 }
 
-                // Only consider 'Debt' transactions for calculating debt-related values
                 if (transaction.TransactionLabel == "Debt")
                 {
                     totalDebt += transaction.TransactionAmount;
                     if (transaction.TransactionType == "Debit")
                     {
-                        // Add only debit transactions related to 'Debt' for remaining debt calculation
                         remainingDebt += transaction.TransactionAmount;
-
-                        // Track cleared debt as the sum of 'Debit' transactions related to 'Debt'
                         clearedDebt += transaction.TransactionAmount;
                     }
                 }
             }
 
-            // Remaining debt is total debt minus any debit payments made toward it
             remainingDebt = totalDebt - clearedDebt;
-
-            // Total balance calculation (credit - debit)
             total = totalCredit - totalDebit;
         }
     }
-    // private IEnumerable<Transaction> GetFilteredTransactions()
-    // {
-    //     var transactions = Session.UserLogin.Transaction.AsQueryable();
-       
-    //     if (filterStartDate.HasValue)
-    //     {
-    //         transactions = transactions.Where(t => t.TransactionDate >= filterStartDate.Value);
-    //     }
 
-    //     if (filterEndDate.HasValue)
-    //     {
-    //         transactions = transactions.Where(t => t.TransactionDate <= filterEndDate.Value);
-    //     }
-      
-    //     return isAscendingOrder
-    //         ? transactions.OrderBy(t => t.TransactionDate)
-    //         : transactions.OrderByDescending(t => t.TransactionDate);
-    // }
-    // private void ToggleSortOrder()
-    // {
-        
-    //     isAscendingOrder = !isAscendingOrder;
-    // }
-}
+    private IEnumerable<Transaction> GetTopTransactions(bool isHighest)
+    {
+        var transactions = Session.UserLogin.Transaction.AsQueryable();
+
+        if (filterStartDate.HasValue)
+        {
+            transactions = transactions.Where(t => t.TransactionDate >= filterStartDate.Value);
+        }
+
+        if (filterEndDate.HasValue)
+        {
+            transactions = transactions.Where(t => t.TransactionDate <= filterEndDate.Value);
+        }
+
+        return isHighest
+            ? transactions.OrderByDescending(t => t.TransactionAmount).Take(5)
+            : transactions.OrderBy(t => t.TransactionAmount).Take(5);
+    }
+
+    private IEnumerable<Debt> GetFilteredDebts()
+    {
+        var debts = Session.UserLogin.Debt.AsQueryable();
+
+        if (filterStartDate.HasValue)
+        {
+            debts = debts.Where(d => d.DebtDate >= filterStartDate.Value);
+        }
+
+        if (filterEndDate.HasValue)
+        {
+            debts = debts.Where(d => d.DebtDate <= filterEndDate.Value);
+        }
+
+        return debts.OrderBy(d => d.DebtAmount).Take(5);
+    }
+
+    private void FilterTransactions()
+    {
+        StateHasChanged();
+    }
 }
 
 

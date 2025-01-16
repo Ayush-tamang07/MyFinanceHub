@@ -102,8 +102,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName>ScopedCss</AssetTraitName>
       <AssetTraitValue>ApplicationBundle</AssetTraitValue>
-      <Fingerprint>iiookefkil</Fingerprint>
-      <Integrity>Gg6MdTg1Zd4JdwBKl332TDZ+oFHiwWdwswgbhJZ+/xw=</Integrity>
+      <Fingerprint>6zhwvh8z8h</Fingerprint>
+      <Integrity>AsbdOnGK+6Qc6xMRnmZvOu9xKitH0H01KidHwYcBwEo=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\MyFinanceHub.styles.css'))</OriginalItemSpec>

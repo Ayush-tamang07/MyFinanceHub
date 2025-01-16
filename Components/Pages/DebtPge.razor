@@ -3,7 +3,6 @@
 @inject SessionUser Session
 @inject UserService UserService
 @inject NavigationManager NavigationManager
-
 <div>
     <div class="texts">
         <div class="text-row">
@@ -15,6 +14,13 @@
             <input @bind="amount" type="number" />
         </div>
         <button @onclick="SubmitDebt">Submit</button>
+    </div>
+
+    <div>
+        @if (!string.IsNullOrEmpty(message))
+        {
+            <p class="@((isSuccess ? "success-message" : "error-message"))" style="color:red;">@message</p>
+        }
     </div>
 
     <table border="1">
@@ -48,17 +54,21 @@
 {
     private string name = "";
     private decimal amount = 0;
+    private string message = "";
+    private bool isSuccess = false;
 
     private Debt newDebt = new Debt();
     private Transaction newTrans = new Transaction();
 
-    // protected override void OnInitialized()
-    // {
-    //     var user = Session.UserLogin;
-    // }
-
     private void SubmitDebt()
     {
+        if (string.IsNullOrWhiteSpace(name) || amount <= 0)
+        {
+            message = "All fields are required, and amount must be greater than zero.";
+            isSuccess = false;
+            return;
+        }
+
         var user = Session.UserLogin;
 
         // Add new transaction to the user's Debt list
@@ -95,6 +105,9 @@
 
         // Reset the Debt object for the next submission
         newDebt = new Debt();
+
+        message = "Debt successfully added!";
+        isSuccess = true;
     }
 
     private void NavigateToClearDebt(int debtId)

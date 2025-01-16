@@ -17,7 +17,7 @@
 
 .top-row[b-uc75twzody] {
     height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .navbar-brand[b-uc75twzody] {
@@ -27,8 +27,6 @@
 .bi[b-uc75twzody] {
     display: inline-block;
     position: relative;
-    width: 1.25rem;
-    height: 1.25rem;
     margin-right: 0.75rem;
     top: -1px;
     background-size: cover;
@@ -59,24 +57,38 @@
         padding-bottom: 1rem;
     }
 
+    /* Updated Colors for Active and Default States */
     .nav-item[b-uc75twzody]  a {
-        color: #d7d7d7;
+        color: #B1B1B1;
         border-radius: 4px;
         height: 3rem;
         display: flex;
         align-items: center;
         line-height: 3rem;
+        text-decoration: none;
+        transition: color 0.3s ease, background-color 0.3s ease;
     }
 
         .nav-item[b-uc75twzody]  a.active {
-            background-color: rgba(255,255,255,0.37);
-            color: white;
+/*            background-color: rgba(255, 255, 255, 0.37);*/
+            background-color: #E3F2FD;
+            color: #2D60FF;
         }
 
         .nav-item[b-uc75twzody]  a:hover {
-            background-color: rgba(255,255,255,0.1);
-            color: white;
+/*            background-color: #E3F2FD;*/
+            color: #2D60FF;
         }
+
+span.bi[b-uc75twzody] {
+    color: #B1B1B1;
+    transition: color 0.3s ease;
+}
+
+.nav-item[b-uc75twzody]  a.active span.bi,
+.nav-item[b-uc75twzody]  a:hover span.bi {
+    color: #2D60FF;
+}
 
 .nav-scrollable[b-uc75twzody] {
     display: none;
@@ -92,9 +104,7 @@
     }
 
     .nav-scrollable[b-uc75twzody] {
-        /* Never collapse the sidebar for wide screens */
         display: block;
-        /* Allow sidebar to scroll for tall menus */
         height: calc(100vh - 3.5rem);
         overflow-y: auto;
     }
