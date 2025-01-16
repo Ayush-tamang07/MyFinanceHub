@@ -1,5 +1,6 @@
 Components\Layout\MainLayout.razor.css
 Components\Layout\NavMenu.razor.css
+Components\Pages\ClearDebt.razor.css
 Components\Pages\Dashboard.razor.css
 Components\Pages\DebtPge.razor.css
 Components\Pages\InFlow.razor.css
@@ -65,7 +66,7 @@ splashSplashScreen.scale-150.png
 splashSplashScreen.scale-200.png
 splashSplashScreen.scale-400.png
 wwwroot\MyFinanceHub.styles.css
-wwwroot\MyFinanceHub.6zhwvh8z8h.bundle.scp.css
+wwwroot\MyFinanceHub.8eptxvi321.bundle.scp.css
 AboutAssets.txt
 wwwroot\css\app.css
 wwwroot\css\bootstrap\bootstrap.min.css

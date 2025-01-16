@@ -3,7 +3,7 @@
   "ManifestType": "Publish",
   "Endpoints": [
     {
-      "Route": "MyFinanceHub.6zhwvh8z8h.styles.css",
+      "Route": "MyFinanceHub.8eptxvi321.styles.css",
       "AssetFile": "MyFinanceHub.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -17,7 +17,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "24715"
+          "Value": "28711"
         },
         {
           "Name": "Content-Type",
@@ -25,21 +25,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"AsbdOnGK+6Qc6xMRnmZvOu9xKitH0H01KidHwYcBwEo=\""
+          "Value": "\"MF3jFp+A+Lb4BeEL98eI8LuCM8JQ5yy3/xblwQOuBvg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 16 Jan 2025 07:16:48 GMT"
+          "Value": "Thu, 16 Jan 2025 08:29:25 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "6zhwvh8z8h"
+          "Value": "8eptxvi321"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-AsbdOnGK+6Qc6xMRnmZvOu9xKitH0H01KidHwYcBwEo="
+          "Value": "sha256-MF3jFp+A+Lb4BeEL98eI8LuCM8JQ5yy3/xblwQOuBvg="
         },
         {
           "Name": "label",
@@ -62,7 +62,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "24715"
+          "Value": "28711"
         },
         {
           "Name": "Content-Type",
@@ -70,17 +70,17 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"AsbdOnGK+6Qc6xMRnmZvOu9xKitH0H01KidHwYcBwEo=\""
+          "Value": "\"MF3jFp+A+Lb4BeEL98eI8LuCM8JQ5yy3/xblwQOuBvg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 16 Jan 2025 07:16:48 GMT"
+          "Value": "Thu, 16 Jan 2025 08:29:25 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-AsbdOnGK+6Qc6xMRnmZvOu9xKitH0H01KidHwYcBwEo="
+          "Value": "sha256-MF3jFp+A+Lb4BeEL98eI8LuCM8JQ5yy3/xblwQOuBvg="
         }
       ]
     },
