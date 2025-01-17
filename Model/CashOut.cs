@@ -17,3 +17,5 @@ namespace MyFinanceHub.Model
         public DateTime CashOutDate { get; set; } = DateTime.Now;
     }
 }
+
+

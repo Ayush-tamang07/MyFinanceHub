@@ -15,7 +15,6 @@
             <p>Tag</p>
             <select @bind="Tag" @bind:event="onchange">
                 <option value="">-- Select Tag --</option>
-                <option value="Debt">Debt</option>
                 <option value="Rent">Rent</option>
                 <option value="Food">Food</option>
                 <option value="Drinks">Drinks</option>
@@ -76,7 +75,7 @@
                     <td>@cashin.TransactionType</td>
                     <td>@cashin.TransactionLabel</td>
                     <td>@cashin.TransactionDate.ToShortDateString()</td>
-                    <td>@cashin.TransactionAmount</td>
+                    <td>@ConvertToSelectedCurrency(cashin.TransactionAmount) @Session.SelectedCurrency</td>
                 </tr>
             }
         </tbody>
@@ -124,13 +123,16 @@
         // Use custom tag if "CustomTag" is selected, otherwise use the dropdown value
         var selectedTag = isCustomTag ? customTag : tag;
 
+        // Adjust amount for selected currency
+        var adjustedAmount = Session.SelectedCurrency == "USD" ? amount / 0.008m : amount;
+
         var newCashIn = new CashIn
             {
                 CashInId = user.CashIn.Count + 1,
                 CashInName = name,
                 CashInType = "Credit",
                 Label = selectedTag,
-                Amount = amount,
+                Amount = adjustedAmount,
                 CashInDate = DateTime.Now,
                 CashInDescription = description
             };
@@ -140,7 +142,7 @@
                 TransactionId = user.Transaction.Count + 1,
                 TransactionLabel = selectedTag,
                 TransactionName = name,
-                TransactionAmount = amount,
+                TransactionAmount = adjustedAmount,
                 TransactionDescription = description,
                 TransactionType = "Credit",
                 TransactionDate = DateTime.Now
@@ -174,5 +176,21 @@
     private string GetRowClass(Transaction cashin)
     {
         return cashin.TransactionLabel == "Debt" ? "highlight-row" : string.Empty;
+    }
+
+    private decimal ConvertToSelectedCurrency(decimal amount)
+    {
+        var conversionRates = new Dictionary<string, decimal>
+        {
+            { "USD", 0.008m },
+            { "NPR", 1m }
+        };
+
+        if (conversionRates.TryGetValue(Session.SelectedCurrency, out var rate))
+        {
+            return Math.Round(amount * rate, 2);
+        }
+
+        throw new InvalidOperationException("Invalid currency selected.");
     }
 }

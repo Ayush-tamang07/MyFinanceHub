@@ -3,6 +3,7 @@
 @inject SessionUser Session
 @inject UserService UserService
 @inject NavigationManager NavigationManager
+
 <div>
     <div class="texts">
         <div class="text-row">
@@ -12,6 +13,14 @@
         <div class="text-row">
             <p>Amount</p>
             <input @bind="amount" type="number" />
+        </div>
+        <div class="text-row">
+            <p>Due Date</p>
+            <input @bind="dueDate" type="date" />
+        </div>
+        <div class="text-row">
+            <p>Source</p>
+            <input @bind="source" />
         </div>
         <button @onclick="SubmitDebt">Submit</button>
     </div>
@@ -29,6 +38,8 @@
                 <th>Name</th>
                 <th>Amount</th>
                 <th>Date</th>
+                <th>Due Date</th>
+                <th>Source</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
@@ -38,8 +49,10 @@
             {
                 <tr>
                     <td>@debt.DebtName</td>
-                    <td>@debt.DebtAmount</td>
+                    <td>@ConvertToSelectedCurrency(debt.DebtAmount) @Session.SelectedCurrency</td>
                     <td>@debt.DebtDate.ToShortDateString()</td>
+                    <td>@debt.DueDate.ToShortDateString()</td>
+                    <td>@debt.Source</td>
                     <td>@debt.Status</td>
                     <td>
                         <button @onclick="() => NavigateToClearDebt(debt.DebtId)">Clear</button>
@@ -50,10 +63,11 @@
     </table>
 </div>
 
-@code
-{
+@code {
     private string name = "";
     private decimal amount = 0;
+    private DateTime dueDate = DateTime.Now.AddMonths(1); // Default to 1 month from today
+    private string source = "";
     private string message = "";
     private bool isSuccess = false;
 
@@ -62,7 +76,7 @@
 
     private void SubmitDebt()
     {
-        if (string.IsNullOrWhiteSpace(name) || amount <= 0)
+        if (string.IsNullOrWhiteSpace(name) || amount <= 0 || string.IsNullOrWhiteSpace(source))
         {
             message = "All fields are required, and amount must be greater than zero.";
             isSuccess = false;
@@ -71,19 +85,24 @@
 
         var user = Session.UserLogin;
 
-        // Add new transaction to the user's Debt list
+        // Adjust amount for selected currency
+        var adjustedAmount = Session.SelectedCurrency == "USD" ? amount / 0.008m : amount;
+
+        // Add new debt
         newDebt.DebtId = user.Debt.Count + 1;
         newDebt.DebtName = name;
         newDebt.DebtType = "Credit";
         newDebt.DebtTag = "Debt";
-        newDebt.DebtAmount = amount;
+        newDebt.DebtAmount = adjustedAmount;
         newDebt.DebtDate = DateTime.Now;
+        newDebt.DueDate = dueDate;
+        newDebt.Source = source;
         newDebt.Status = "UnPaid";
 
         newTrans.TransactionId = user.Transaction.Count + 1;
         newTrans.TransactionLabel = "Debt";
         newTrans.TransactionName = name;
-        newTrans.TransactionAmount = amount;
+        newTrans.TransactionAmount = adjustedAmount;
         newTrans.TransactionType = "Credit";
         newTrans.TransactionDate = DateTime.Now;
 
@@ -102,6 +121,8 @@
         // Clear the input fields
         name = "";
         amount = 0;
+        dueDate = DateTime.Now.AddMonths(1);
+        source = "";
 
         // Reset the Debt object for the next submission
         newDebt = new Debt();
@@ -113,5 +134,21 @@
     private void NavigateToClearDebt(int debtId)
     {
         NavigationManager.NavigateTo($"/cleardebt?DebtId={debtId}");
+    }
+
+    private decimal ConvertToSelectedCurrency(decimal amount)
+    {
+        var conversionRates = new Dictionary<string, decimal>
+        {
+            { "USD", 0.008m },
+            { "NPR", 1m }
+        };
+
+        if (conversionRates.TryGetValue(Session.SelectedCurrency, out var rate))
+        {
+            return Math.Round(amount * rate, 2);
+        }
+
+        throw new InvalidOperationException("Invalid currency selected.");
     }
 }

@@ -17,3 +17,5 @@ namespace MyFinanceHub.Model
         public DateTime TransactionDate { get; set; } = DateTime.Now;
     }
 }
+
+

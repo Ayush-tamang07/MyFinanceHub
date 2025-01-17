@@ -1,6 +1,7 @@
 ﻿@page "/dashboard"
 @using MyFinanceHub.Model
 @inject SessionUser Session
+
 <div class="top-row px-4">
     <span>Dashboard</span>
 </div>
@@ -8,31 +9,31 @@
 <div class="container">
     <div>
         <p>My Balance</p>
-        <p>@total</p>
+        <p>@ConvertToSelectedCurrency(total) @Session.SelectedCurrency</p>
     </div>
 
     <div>
         <p>Total Inflow</p>
-        <p>@totalCredit</p>
+        <p>@ConvertToSelectedCurrency(totalCredit) @Session.SelectedCurrency</p>
     </div>
 
     <div>
         <p>Total OutFlow</p>
-        <p>@totalDebit</p>
+        <p>@ConvertToSelectedCurrency(totalDebit) @Session.SelectedCurrency</p>
     </div>
 
     <div>
         <p>Total Debt</p>
-        <p>@totalDebt</p>
+        <p>@ConvertToSelectedCurrency(totalDebt) @Session.SelectedCurrency</p>
     </div>
     <div>
         <p>Remaining Debt</p>
-        <p>@remainingDebt</p>
+        <p>@ConvertToSelectedCurrency(remainingDebt) @Session.SelectedCurrency</p>
     </div>
 
     <div>
         <p>Clear Debt</p>
-        <p>@clearedDebt</p>
+        <p>@ConvertToSelectedCurrency(clearedDebt) @Session.SelectedCurrency</p>
     </div>
 </div>
 
@@ -61,7 +62,7 @@
                     {
                         <tr>
                             <td>@transaction.TransactionName</td>
-                            <td>@transaction.TransactionAmount</td>
+                            <td>@ConvertToSelectedCurrency(transaction.TransactionAmount) @Session.SelectedCurrency</td>
                             <td>@transaction.TransactionType</td>
                             <td>@transaction.TransactionDate.ToShortDateString()</td>
                         </tr>
@@ -87,7 +88,7 @@
                     {
                         <tr>
                             <td>@transaction.TransactionName</td>
-                            <td>@transaction.TransactionAmount</td>
+                            <td>@ConvertToSelectedCurrency(transaction.TransactionAmount) @Session.SelectedCurrency</td>
                             <td>@transaction.TransactionType</td>
                             <td>@transaction.TransactionDate.ToShortDateString()</td>
                         </tr>
@@ -113,7 +114,7 @@
                 {
                     <tr>
                         <td>@debt.DebtName</td>
-                        <td>@debt.DebtAmount</td>
+                        <td>@ConvertToSelectedCurrency(debt.DebtAmount) @Session.SelectedCurrency</td>
                         <td>@debt.DebtDate.ToShortDateString()</td>
                         <td>@debt.Status</td>
                     </tr>
@@ -144,28 +145,10 @@
 
         if (loggedUser?.Transaction != null)
         {
-            foreach (var transaction in loggedUser.Transaction)
-            {
-                if (transaction.TransactionType == "Credit")
-                {
-                    totalCredit += transaction.TransactionAmount;
-                }
-                else if (transaction.TransactionType == "Debit")
-                {
-                    totalDebit += transaction.TransactionAmount;
-                }
-
-                if (transaction.TransactionLabel == "Debt")
-                {
-                    totalDebt += transaction.TransactionAmount;
-                    if (transaction.TransactionType == "Debit")
-                    {
-                        remainingDebt += transaction.TransactionAmount;
-                        clearedDebt += transaction.TransactionAmount;
-                    }
-                }
-            }
-
+            totalCredit = loggedUser.Transaction.Where(t => t.TransactionType == "Credit").Sum(t => t.TransactionAmount);
+            totalDebit = loggedUser.Transaction.Where(t => t.TransactionType == "Debit").Sum(t => t.TransactionAmount);
+            totalDebt = loggedUser.Transaction.Where(t => t.TransactionLabel == "Debt" && t.TransactionType == "Credit").Sum(t => t.TransactionAmount);
+            clearedDebt = loggedUser.Transaction.Where(t => t.TransactionLabel == "Debt" && t.TransactionType == "Debit").Sum(t => t.TransactionAmount);
             remainingDebt = totalDebt - clearedDebt;
             total = totalCredit - totalDebit;
         }
@@ -174,36 +157,16 @@
     private IEnumerable<Transaction> GetTopTransactions(bool isHighest)
     {
         var transactions = Session.UserLogin.Transaction.AsQueryable();
-
-        if (filterStartDate.HasValue)
-        {
-            transactions = transactions.Where(t => t.TransactionDate >= filterStartDate.Value);
-        }
-
-        if (filterEndDate.HasValue)
-        {
-            transactions = transactions.Where(t => t.TransactionDate <= filterEndDate.Value);
-        }
-
-        return isHighest
-            ? transactions.OrderByDescending(t => t.TransactionAmount).Take(5)
-            : transactions.OrderBy(t => t.TransactionAmount).Take(5);
+        if (filterStartDate.HasValue) transactions = transactions.Where(t => t.TransactionDate >= filterStartDate.Value);
+        if (filterEndDate.HasValue) transactions = transactions.Where(t => t.TransactionDate <= filterEndDate.Value);
+        return isHighest ? transactions.OrderByDescending(t => t.TransactionAmount).Take(5) : transactions.OrderBy(t => t.TransactionAmount).Take(5);
     }
 
     private IEnumerable<Debt> GetFilteredDebts()
     {
         var debts = Session.UserLogin.Debt.AsQueryable();
-
-        if (filterStartDate.HasValue)
-        {
-            debts = debts.Where(d => d.DebtDate >= filterStartDate.Value);
-        }
-
-        if (filterEndDate.HasValue)
-        {
-            debts = debts.Where(d => d.DebtDate <= filterEndDate.Value);
-        }
-
+        if (filterStartDate.HasValue) debts = debts.Where(d => d.DebtDate >= filterStartDate.Value);
+        if (filterEndDate.HasValue) debts = debts.Where(d => d.DebtDate <= filterEndDate.Value);
         return debts.OrderBy(d => d.DebtAmount).Take(5);
     }
 
@@ -211,6 +174,20 @@
     {
         StateHasChanged();
     }
+
+    private decimal ConvertToSelectedCurrency(decimal amount)
+    {
+        var conversionRates = new Dictionary<string, decimal>
+        {
+            { "USD", 0.008m  },
+            { "NPR", 1m }
+        };
+
+        if (conversionRates.TryGetValue(Session.SelectedCurrency, out var rate))
+        {
+            return Math.Round(amount * rate, 2);
+        }
+
+        throw new InvalidOperationException("Invalid currency selected.");
+    }
 }
-
-

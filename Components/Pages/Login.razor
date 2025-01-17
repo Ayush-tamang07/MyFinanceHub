@@ -10,12 +10,12 @@
     <h3>Login</h3>
     <input @bind="LoginUsername" placeholder="Username" @oninput="ClearMessage" />
     <input @bind="LoginPassword" placeholder="Password" type="password" @oninput="ClearMessage" />
-    
+
     <select @bind="SelectedCurrency">
         <option value="NPR">NPR</option>
         <option value="USD">USD</option>
     </select>
-    
+
     <button @onclick="LoginPage">Login</button>
     <a href="/register">Register</a>
 </div>
@@ -43,8 +43,8 @@
 
         if (user != null && UserService.ValidatePassword(LoginPassword, user.Password))
         {
-            Console.WriteLine($"User logged in with {SelectedCurrency} currency: ", user);
-            Session.UserLogin = user;
+            Console.WriteLine($"User logged in with {SelectedCurrency} currency.");
+            Session.Login(user, SelectedCurrency); // Pass selected currency here
             NavigationManager.NavigateTo("/dashboard");
         }
         else

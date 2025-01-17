@@ -30,25 +30,25 @@
     <AppXManifest Include="C:\Users\Ayush\source\repos\MyFinanceHub\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-01-16T08:29:37.206</Modified>
+      <Modified>2025-01-17T01:34:56.911</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2025-01-16T08:29:37.076</Modified>
+      <Modified>2025-01-17T00:17:55.866</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MyFinanceHub.runtimeconfig.json">
       <PackagePath>MyFinanceHub.runtimeconfig.json</PackagePath>
-      <Modified>2025-01-16T08:29:36.974</Modified>
+      <Modified>2025-01-17T00:36:41.420</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MyFinanceHub.dll">
       <PackagePath>MyFinanceHub.dll</PackagePath>
-      <Modified>2025-01-16T08:29:36.574</Modified>
+      <Modified>2025-01-17T01:34:55.289</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>MyFinanceHub.exe</PackagePath>
-      <Modified>2025-01-16T08:29:36.584</Modified>
+      <Modified>2025-01-17T01:34:55.381</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
@@ -304,7 +304,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MyFinanceHub.deps.json">
       <PackagePath>MyFinanceHub.deps.json</PackagePath>
-      <Modified>2025-01-16T08:29:36.970</Modified>
+      <Modified>2025-01-17T00:36:41.413</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.54\lib\net8.0\Microsoft.Windows.SDK.NET.dll">
       <PackagePath>Microsoft.Windows.SDK.NET.dll</PackagePath>
@@ -668,7 +668,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\staticwebassets.build.endpoints.json">
       <PackagePath>MyFinanceHub.staticwebassets.endpoints.json</PackagePath>
-      <Modified>2025-01-16T08:29:33.902</Modified>
+      <Modified>2025-01-17T00:17:49.990</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\.nuget\packages\microsoft.maui.controls.compatibility\8.0.83\lib\net8.0-windows10.0.19041\Microsoft.Maui.Controls.Compatibility.pri">
       <PackagePath>Microsoft.Maui.Controls.Compatibility.pri</PackagePath>
@@ -684,11 +684,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\scopedcss\bundle\MyFinanceHub.styles.css">
       <PackagePath>wwwroot\MyFinanceHub.styles.css</PackagePath>
-      <Modified>2025-01-16T08:29:25.908</Modified>
+      <Modified>2025-01-16T17:38:14.470</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\scopedcss\projectbundle\MyFinanceHub.bundle.scp.css">
-      <PackagePath>wwwroot\MyFinanceHub.8eptxvi321.bundle.scp.css</PackagePath>
-      <Modified>2025-01-16T08:29:25.911</Modified>
+      <PackagePath>wwwroot\MyFinanceHub.o7b4lu91gg.bundle.scp.css</PackagePath>
+      <Modified>2025-01-16T17:38:14.477</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\Components\Layout\MainLayout.razor.css">
       <PackagePath>Components\Layout\MainLayout.razor.css</PackagePath>
@@ -700,15 +700,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\Components\Pages\ClearDebt.razor.css">
       <PackagePath>Components\Pages\ClearDebt.razor.css</PackagePath>
-      <Modified>2025-01-16T08:09:35.435</Modified>
+      <Modified>2025-01-17T00:28:08.621</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\Components\Pages\Dashboard.razor.css">
       <PackagePath>Components\Pages\Dashboard.razor.css</PackagePath>
-      <Modified>2025-01-16T07:42:10.179</Modified>
+      <Modified>2025-01-16T09:36:49.892</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\Components\Pages\DebtPge.razor.css">
       <PackagePath>Components\Pages\DebtPge.razor.css</PackagePath>
-      <Modified>2025-01-16T08:29:25.280</Modified>
+      <Modified>2025-01-16T08:34:58.019</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\Components\Pages\InFlow.razor.css">
       <PackagePath>Components\Pages\InFlow.razor.css</PackagePath>
@@ -724,7 +724,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\Components\Pages\Register.razor.css">
       <PackagePath>Components\Pages\Register.razor.css</PackagePath>
-      <Modified>2025-01-15T15:48:01.632</Modified>
+      <Modified>2025-01-16T09:36:53.019</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ayush\source\repos\MyFinanceHub\Components\Pages\TransactionPage.razor.css">
       <PackagePath>Components\Pages\TransactionPage.razor.css</PackagePath>

@@ -17,3 +17,8 @@ namespace MyFinanceHub.Model
         public DateTime CashInDate { get; set; } = DateTime.Now;
     }
 }
+
+
+
+
+

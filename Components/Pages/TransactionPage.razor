@@ -2,14 +2,17 @@
 @using MyFinanceHub.Model
 @inject UserService UserService
 @inject SessionUser Session
-@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+@using System.Text
+
+
 
 <div>
     <!-- Total Balance and Transactions -->
     <div class="balance-container">
         <div>
             <p>Total Balance</p>
-            <p>@total</p>
+            <p>@ConvertToSelectedCurrency(total) @Session.SelectedCurrency</p>
         </div>
         <div>
             <p>Total Transactions</p>
@@ -52,6 +55,11 @@
             <option value="asc">Date: Oldest First</option>
             <option value="desc">Date: Newest First</option>
         </select>
+    </div>
+
+    <!-- Export Button -->
+    <div class="export-section">
+        <button @onclick="ExportTransactions" class="export-button">Export Transactions</button>
     </div>
 
     <!-- Transactions Table -->
@@ -101,7 +109,7 @@
                         }
                     </td>
                     <td>@transaction.TransactionDate.ToShortDateString()</td>
-                    <td>$@transaction.TransactionAmount</td>
+                    <td>@ConvertToSelectedCurrency(transaction.TransactionAmount) @Session.SelectedCurrency</td>
                     <td>
                         @if (editTransactionId == transaction.TransactionId)
                         {
@@ -119,15 +127,14 @@
     </table>
 </div>
 
-@code
-{
+@code {
     private string searchKeyword = string.Empty;
     private string filterTransactionType = string.Empty;
     private string filterTransactionLabel = string.Empty;
     private DateTime? filterStartDate = null;
     private DateTime? filterEndDate = null;
 
-    private string _sortOrder = "asc"; // Default sort order
+    private string _sortOrder = "asc";
     private string SortOrder
     {
         get => _sortOrder;
@@ -144,12 +151,12 @@
     private decimal totalCredit = 0;
     private decimal totalDebit = 0;
     private decimal total = 0;
-    private int totalTransactions = 0; // Tracks total transactions count
+    private int totalTransactions = 0;
 
-    private int editTransactionId = -1; // Tracks the currently edited transaction ID
-    private string editableLabel = string.Empty; // Stores the selected label for editing
-    private string customTag = string.Empty; // Stores the custom tag value
-    private bool isCustomTag = false; // Tracks whether a custom tag is being added
+    private int editTransactionId = -1;
+    private string editableLabel = string.Empty;
+    private string customTag = string.Empty;
+    private bool isCustomTag = false;
 
     protected override void OnInitialized()
     {
@@ -178,19 +185,16 @@
     {
         var transactions = Session.UserLogin.Transaction.AsQueryable();
 
-        // Filter by Transaction Type
         if (!string.IsNullOrEmpty(filterTransactionType))
         {
             transactions = transactions.Where(t => t.TransactionType == filterTransactionType);
         }
 
-        // Filter by Transaction Label
         if (!string.IsNullOrEmpty(filterTransactionLabel))
         {
             transactions = transactions.Where(t => t.TransactionLabel == filterTransactionLabel);
         }
 
-        // Filter by Date Range
         if (filterStartDate.HasValue)
         {
             transactions = transactions.Where(t => t.TransactionDate >= filterStartDate.Value);
@@ -201,7 +205,6 @@
             transactions = transactions.Where(t => t.TransactionDate <= filterEndDate.Value);
         }
 
-        // Search by Keyword (Name or Label)
         if (!string.IsNullOrEmpty(searchKeyword))
         {
             transactions = transactions.Where(t =>
@@ -209,7 +212,6 @@
                 (!string.IsNullOrEmpty(t.TransactionLabel) && t.TransactionLabel.Contains(searchKeyword, StringComparison.OrdinalIgnoreCase)));
         }
 
-        // Sort by Date
         return SortOrder == "asc"
             ? transactions.OrderBy(t => t.TransactionDate)
             : transactions.OrderByDescending(t => t.TransactionDate);
@@ -232,7 +234,6 @@
         {
             transaction.TransactionLabel = isCustomTag ? customTag : editableLabel;
 
-            // Save the updated user data
             var users = UserService.LoadUsers();
             var userIndex = users.FindIndex(u => u.UserID == user.UserID);
             if (userIndex != -1)
@@ -261,6 +262,49 @@
         editableLabel = e.Value.ToString();
         isCustomTag = editableLabel == "CustomTag";
     }
-}
 
+    private decimal ConvertToSelectedCurrency(decimal amount)
+    {
+        var conversionRates = new Dictionary<string, decimal>
+        {
+            { "USD", 0.008m  },
+            { "NPR", 1m }
+        };
+
+        if (conversionRates.TryGetValue(Session.SelectedCurrency, out var rate))
+        {
+            return Math.Round(amount * rate, 2);
+        }
+
+        throw new InvalidOperationException("Invalid currency selected.");
+    }
+
+    private async Task ExportTransactions()
+    {
+        var transactions = GetFilteredTransactions();
+
+        var csvData = new StringBuilder();
+        csvData.AppendLine("TransactionName,TransactionID,TransactionType,TransactionLabel,TransactionDate,TransactionAmount");
+
+        foreach (var transaction in transactions)
+        {
+            csvData.AppendLine($"{transaction.TransactionName},{transaction.TransactionId},{transaction.TransactionType},{transaction.TransactionLabel},{transaction.TransactionDate:yyyy-MM-dd},{transaction.TransactionAmount}");
+        }
+
+        var fileName = $"Transactions_{DateTime.Now:yyyyMMddHHmmss}.csv";
+        var contentType = "text/csv";
+
+        await JSRuntime.InvokeVoidAsync("downloadFile", fileName, contentType, Encoding.UTF8.GetBytes(csvData.ToString()));
+    }
+}
+<script>
+    function downloadFile(fileName, contentType, content) {
+        const blob = new Blob([content], { type: contentType });
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = fileName;
+        link.click();
+        window.URL.revokeObjectURL(link.href);
+    }
+</script>
 

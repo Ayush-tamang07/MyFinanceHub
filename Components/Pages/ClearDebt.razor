@@ -9,7 +9,7 @@
     <button @onclick="NavigateBack" class="back-button">Back</button>
     <div class="texts">
         <div class="text-row">
-            <p>Amount</p>
+            <p>Amount (@Session.SelectedCurrency)</p>
             <input @bind="amount" type="number" class="input-field" />
         </div>
         <button @onclick="SubmitDebt" class="submit-button">Submit</button>
@@ -73,7 +73,9 @@
             return;
         }
 
-        decimal debts = debt.DebtAmount;
+        // Convert debt amount and entered amount to NPR for comparison
+        var debtAmountInNPR = Session.SelectedCurrency == "USD" ? debt.DebtAmount / 0.0072m : debt.DebtAmount;
+        var enteredAmountInNPR = Session.SelectedCurrency == "USD" ? amount / 0.0072m : amount;
 
         if (amount <= 0)
         {
@@ -81,13 +83,13 @@
             return;
         }
 
-        if (amount > totalBalance)
+        if (enteredAmountInNPR > totalBalance)
         {
-            Message = "Insufficient balance to clear debt.";
+            Message = $"Insufficient balance to clear debt. Total balance: {ConvertToSelectedCurrency(totalBalance)}";
             return;
         }
 
-        if (amount > debts)
+        if (enteredAmountInNPR > debtAmountInNPR)
         {
             Message = "Amount exceeds the remaining debt.";
             return;
@@ -96,16 +98,16 @@
         // Add new transaction to the user's Debt list
         newClear.DebtClearId = debt.DebtClear.Count + 1;
         newClear.DebtClearType = "Debit";
-        newClear.DebtClearAmount = amount;
+        newClear.DebtClearAmount = enteredAmountInNPR;
         newClear.DebtClearDate = DateTime.Now;
 
-        debt.DebtAmount -= amount;
+        debt.DebtAmount -= enteredAmountInNPR;
         debt.Status = debt.DebtAmount == 0 ? "Cleared" : "Pending";
 
         newTrans.TransactionId = user.Transaction.Count + 1;
         newTrans.TransactionName = "Loan Paid";
         newTrans.TransactionLabel = "Debt";
-        newTrans.TransactionAmount = amount;
+        newTrans.TransactionAmount = enteredAmountInNPR;
         newTrans.TransactionType = "Debit";
         newTrans.TransactionDate = DateTime.Now;
 
@@ -129,10 +131,25 @@
         newClear = new DebtClear();
     }
 
+
+    private decimal ConvertToSelectedCurrency(decimal amount)
+    {
+        var conversionRates = new Dictionary<string, decimal>
+        {
+            { "USD", 0.008m  },
+            { "NPR", 1m }
+        };
+
+        if (conversionRates.TryGetValue(Session.SelectedCurrency, out var rate))
+        {
+            return Math.Round(amount * rate, 2);
+        }
+
+        throw new InvalidOperationException("Invalid currency selected.");
+    }
+
     private void NavigateBack()
     {
         NavigationManager.NavigateTo("/debtPge");
     }
 }
-
-

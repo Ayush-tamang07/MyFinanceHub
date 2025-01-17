@@ -3,7 +3,7 @@
 public class SessionUser
 {
     private User _userLogin;
-    private string _selectedCurrency = "npr";
+    private string _selectedCurrency = "NPR"; // Default currency
 
     public bool LoggedIn => _userLogin != null;
 
@@ -12,6 +12,7 @@ public class SessionUser
         get => _userLogin ?? throw new InvalidOperationException("No user is logged in.");
         set => _userLogin = value;
     }
+
     public string SelectedCurrency
     {
         get => _selectedCurrency;
@@ -26,6 +27,12 @@ public class SessionUser
     public void Logout()
     {
         _userLogin = null;
-        _selectedCurrency = "npr";
+        _selectedCurrency = "NPR";
+    }
+
+    public void Login(User user, string selectedCurrency)
+    {
+        UserLogin = user;
+        SelectedCurrency = selectedCurrency;
     }
 }

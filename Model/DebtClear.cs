@@ -14,3 +14,5 @@ namespace MyFinanceHub.Model
         public DateTime DebtClearDate { get; set; } = DateTime.Now;
     }
 }
+
+

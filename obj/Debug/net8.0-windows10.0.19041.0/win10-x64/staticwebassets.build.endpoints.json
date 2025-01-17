@@ -3,7 +3,7 @@
   "ManifestType": "Build",
   "Endpoints": [
     {
-      "Route": "MyFinanceHub.8eptxvi321.styles.css",
+      "Route": "MyFinanceHub.o7b4lu91gg.styles.css",
       "AssetFile": "MyFinanceHub.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -17,7 +17,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "28711"
+          "Value": "28707"
         },
         {
           "Name": "Content-Type",
@@ -25,21 +25,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"MF3jFp+A+Lb4BeEL98eI8LuCM8JQ5yy3/xblwQOuBvg=\""
+          "Value": "\"PLH9KnufAC3/oqgWDXIAJyUWw+Lwrti2RjfquuO5vtA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 16 Jan 2025 08:29:25 GMT"
+          "Value": "Thu, 16 Jan 2025 17:38:14 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "8eptxvi321"
+          "Value": "o7b4lu91gg"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-MF3jFp+A+Lb4BeEL98eI8LuCM8JQ5yy3/xblwQOuBvg="
+          "Value": "sha256-PLH9KnufAC3/oqgWDXIAJyUWw+Lwrti2RjfquuO5vtA="
         },
         {
           "Name": "label",
@@ -62,7 +62,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "28711"
+          "Value": "28707"
         },
         {
           "Name": "Content-Type",
@@ -70,17 +70,17 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"MF3jFp+A+Lb4BeEL98eI8LuCM8JQ5yy3/xblwQOuBvg=\""
+          "Value": "\"PLH9KnufAC3/oqgWDXIAJyUWw+Lwrti2RjfquuO5vtA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 16 Jan 2025 08:29:25 GMT"
+          "Value": "Thu, 16 Jan 2025 17:38:14 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-MF3jFp+A+Lb4BeEL98eI8LuCM8JQ5yy3/xblwQOuBvg="
+          "Value": "sha256-PLH9KnufAC3/oqgWDXIAJyUWw+Lwrti2RjfquuO5vtA="
         }
       ]
     },
